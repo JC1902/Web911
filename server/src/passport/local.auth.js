@@ -17,13 +17,17 @@ const userController = require('../controllers/users.controller');
 
 passport.serializeUser( (user, done) => {
 
-    console.log("Se serializó el usuario:", user);
-    done(null, user.id);
+    console.log("Se serializó el usuario con ID:", user);
+    done(null, user);
 });
 
-passport.deserializeUser( async (id, done) => {
+passport.deserializeUser( async (userArray, done) => {
 
-    const user = await userController.getUserById(id);
+	    const userObject = userArray[0];
+
+    console.log("ID para deseralizar: ", userObject);
+
+    const user = await userController.getUserById(userObject.id);
     console.log("Se deserializó el usuario: ", user);
     done(null, user);
 });
@@ -71,9 +75,12 @@ passport.use('local-signin', new LocalStrategy(
     passwordField: 'password',
     passReqToCallback: true},
     
-    async (req, email, password, done)=>{
+    async (req, email, password, done)=> {
 
-        const userEmail = await userController.getEmail(email);
+	    console.log("Email: ", email);
+	    console.log("Password: ", password);
+
+	const userEmail = await userController.getEmail(email);
 
         // Compara si existe el usuario
         if(userEmail == null){
@@ -88,6 +95,7 @@ passport.use('local-signin', new LocalStrategy(
         }
 
         const user = await userController.getUserByEmail(email);
+	console.log("User", user);
         console.log('Sesión iniciada');
         done(null, user);
     }));

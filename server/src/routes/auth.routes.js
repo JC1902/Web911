@@ -8,7 +8,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-// Rutas de manejo de sesión
+// Rutas registro de usuario
 router.get('/auth/signup', (req, res, next) => {
     res.render('signup');
 });
@@ -19,7 +19,7 @@ router.post('/auth/signup', passport.authenticate('local-signup', {
     passReqToCallback: true
 }));
 
-
+// Rutas de manejo de registro de usuario
 router.get('/auth/signin', (req, res, next) => {
     res.render('signin');
 });

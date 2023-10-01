@@ -6,15 +6,14 @@ const pool = require('../database'); // Reemplaza '../database' con la ruta corr
 
 const { encrypt } = require('../../utilities/encryption');
 const bcrypt = require('bcrypt');
-const { user } = require('../config/database.config');
 
 // Obtener los datos del usuario por ID
 async function getUserById(id) {
     try {
         const connection = await pool.getConnection();
         const [user] = await connection.query('SELECT name, email, phone FROM Users WHERE id = ?', id); // Desestructura el resultado para obtener el objeto directamente
-        connection.release();
-        return user;
+	connection.release();
+	return user;
     } catch (error) {
         console.error(error);
     }
@@ -25,7 +24,7 @@ async function getUserById(id) {
 async function getUserByEmail(email) {
     try {
         const connection = await pool.getConnection();
-        const user = await connection.query('SELECT name, phone FROM Users WHERE email = ?', email);
+        const user = await connection.query('SELECT id, name, phone FROM Users WHERE email = ?', email);
         connection.release();
         return user;
     } catch (error) {
