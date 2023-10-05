@@ -1,0 +1,148 @@
+$rojo911: #d12926;
+$amarillo911: #fef709;
+$negro: #000;
+$blanco: #fff;
+$menu-hover: 0.5s;
+$fuente-principal: 'Monserrat', sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.menu {
+    background-color: $rojo911;
+    color: $blanco;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 5px 0 10px rgba($color: $negro, $alpha: 0.6);
+    font-family: $fuente-principal;
+}
+
+.logo {
+    font-size: 25px;
+    padding: 0 80px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (max-width: 480px) {
+        &:nth-child(2) {
+            display: none;
+        }
+    }
+}
+
+.logo_a {
+    color: $blanco;
+    margin-left: 25px;
+}
+
+.menu_items {
+    display: flex;
+    list-style: none;
+    margin-right: 50px;
+}
+
+.menu_items-li {
+    border-radius: 3px;
+    margin: 0 5px;
+
+    &:hover, &:active {
+        background-color: $amarillo911;
+        transition: $menu-hover;
+    }
+}
+
+.menu_items-a {
+    text-align: center;
+    padding: 10px 8px;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    color: $blanco;
+    text-transform: uppercase;
+
+    &:hover {
+        color: $negro;
+    }
+}
+
+@media screen and (max-width: 952px) {
+    .logo {
+        padding-left: 35px;
+    }
+
+    .menu_items-li .menu_items-a {
+        font-size: 16px;
+    }
+}
+
+.boton_menu {
+    margin-right: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+.span-img {
+    width: 30px;
+    height: 30px;
+}
+
+ul.show {
+    top: 75px;
+    z-index: 1000;
+}
+
+@media screen and (max-width: 1044px) {
+    .menu {
+        height: 80px;
+    }
+
+    .boton_menu {
+        display: inline-flex;
+    }
+
+    .menu_items {
+        position: fixed;
+        width: 100vw;
+        height: calc(100% - 65px);
+        background-color: $rojo911;
+        top: -200vh;
+        text-align: center;
+        transition: all 0.4s;
+        flex-direction: column;
+    }
+
+    .menu_items-li {
+        margin: 30px 30px 0 0;
+        line-height: 30px;
+    }
+
+    .menu_items-li:hover {
+        background: none;
+    }
+
+    .menu_items-li .menu_items-a {
+        font-size: 20px;
+        color: $blanco;
+    }
+
+    .menu_items-li .menu_items-a:hover {
+        color: $blanco;
+    }
+
+    .logo {
+        padding: 35px;
+    }
+}
+
+.active {
+    color: $amarillo911;
+    border-bottom: 3px solid $amarillo911;
+}

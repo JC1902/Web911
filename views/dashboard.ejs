@@ -1,0 +1,24 @@
+<body>
+    <h1>Dashboard</h1>
+   
+    <!-- Boton de logout -->
+    <button id="logoutButton">Logout</button>
+
+    <!-- Importacion del JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+    <script>
+      // Manejador del evento de click en el boton
+      $(document).ready(function() {
+        $('#logoutButton').click(function() {
+          // Envia una peticion GET al servidor para finalizar la sesion
+          $.get('/auth/logout', function(data) {
+            // Maneja la respuesta entregada por el servidor
+            console.log(data); // Despliega los mensajes del servidor.
+            // Se redirecciona al usuario a la ruta / de la pagina
+            window.location.href = '/';
+          });
+        });
+      });
+    </script>
+  </body>

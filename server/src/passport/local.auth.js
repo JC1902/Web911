@@ -1,5 +1,3 @@
-"use strict";
-
 // Módulo local.auth.js
 // que hace uso de la librería passport. 
 // Código encargado de administrar 
@@ -9,25 +7,30 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../models/user.model');
+const userController = require('../controllers/users.controller');
 
 // Control de la serialización del usuario
 // se guarda en archivos del navegador
-// para que las páginas no reuieran una
-// nueva autenticación
+// para que las páginas no requieran
+// autenticación una vez la sesión haya sido
+// iniciada.
 
-passport.serializeUser((user, done) => {
+passport.serializeUser( (user, done) => {
 
-    // console.log("User -> ", user);
-    done(null, user.id);
-});
-
-passport.deserializeUser( (id, done) => {
-    const user = User.findByPk(id);
-    // console.log("User -> ", user);
+    console.log("Se serializó el usuario con ID:", user);
     done(null, user);
 });
 
+passport.deserializeUser( async (userArray, done) => {
+
+	    const userObject = userArray[0];
+
+    console.log("ID para deseralizar: ", userObject);
+
+    const user = await userController.getUserById(userObject.id);
+    console.log("Se deserializó el usuario: ", user);
+    done(null, user);
+});
 
 // Control del registro de usuario
 passport.use('local-signup', new LocalStrategy(
@@ -36,22 +39,32 @@ passport.use('local-signup', new LocalStrategy(
      passwordField: 'password',
      passReqToCallback: true
     },
+
     async (req, email, password, done) => {
 
-        const userExist = await User.findOne({
-            where: {email:email}
-        });
+        console.log('Recibida una solicitud desde: ' + req.url);
+        console.log('Email de llegada: ', email);
+        console.log('Contraseña de llegada: ', password);
 
-        if(userExist){
+        const registeredMail = await userController.getEmail(email);
+
+        console.log('Resultado búsqueda de mail', registeredMail);
+
+        if (registeredMail.length !== 0) {
+
+            console.log('Email ya ocupado');
+
             return done(null, false, req.flash(
                 'signupMessage',
                 'The email is already taken.'
             ));
-        }else{
-            const newUser = new User();
-            newUser.email = email;
-            newUser.password = password;
-            await newUser.save();
+
+        } else {
+
+            console.log('Registrando usuario...');
+
+            const newUser = await userController.registerUser(email, password);
+            console.log('Usuario registrado: ', newUser);
             done(null, newUser);
         }
     }));
@@ -62,26 +75,27 @@ passport.use('local-signin', new LocalStrategy(
     passwordField: 'password',
     passReqToCallback: true},
     
-    async (req, email, password, done)=>{
+    async (req, email, password, done)=> {
 
-        const user = await User.findOne({
-            where: {email:email}
-        });
+	    console.log("Email: ", email);
+	    console.log("Password: ", password);
+
+	const userEmail = await userController.getEmail(email);
 
         // Compara si existe el usuario
-        if(!user){
+        if(userEmail == null){
             return done(null, false, req.flash('signinMessage','No user found.'));
         }
-        // Comparación de contraseñas
 
-        const correctPassword = await user.comparePassword(password);
+        // Comparación de contraseñas
+        const correctPassword = await userController.comparePassword(email, password);
 
         if(!correctPassword){
             return done(null, false, req.flash('signinMessage','Incorrect Password'));
         }
 
+        const user = await userController.getUserByEmail(email);
+	console.log("User", user);
+        console.log('Sesión iniciada');
         done(null, user);
-
     }));
-
-
