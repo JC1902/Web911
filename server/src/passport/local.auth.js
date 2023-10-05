@@ -92,7 +92,7 @@ passport.use('local-signin', new LocalStrategy(
 
         if(!correctPassword){
             return done(null, false, req.flash('signinMessage','Incorrect Password'));
-        }
+		}
 
         const user = await userController.getUserByEmail(email);
 	console.log("User", user);
