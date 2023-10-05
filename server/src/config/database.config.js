@@ -2,8 +2,10 @@
 // para la conexión a la base de datos.
 // Credenciales obtenidas del archivo .env
 
-const dotenv = require('dotenv');
-dotenv.config();
+/*const dotenv = require('dotenv');
+dotenv.config();*/
+
+require('dotenv').config();
 
 const databaseConfig = {
     host: process.env.DB_HOST,
@@ -11,5 +13,5 @@ const databaseConfig = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD
 };
-  
+
 module.exports = databaseConfig;

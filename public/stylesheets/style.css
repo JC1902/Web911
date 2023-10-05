@@ -39,9 +39,10 @@ body {
 .texto {
   color       : var(--blanco)           ;
   font-family : var(--fuentePrincipal)  ;
-  font-size   : 1.5rem                  ;
+  font-size   : 2rem                    ;
   text-align  : justify                 ;
-  margin-top  : .5rem                   ;
+  margin-top  : 1rem                    ;
+
 }
 
 header {
@@ -94,14 +95,26 @@ footer {
 
 .encabezado {
   font-family : var(--fuentePrincipal)  ;
-  font-size   : 25px                    ;
+  font-size   : 4rem                    ;
   color       : #ffffff               ;
   text-align  : center                  ;
+  padding-top: 5rem;
 }
 
 /*================================================================GLOBALES======================================================================*/
 
 /*===============================================================AGENCIAS=======================================================================*/
+
+
+.agencias {
+  display               : grid            ;
+  grid-template-columns : repeat(3, 1fr)  ;
+  margin-top            : 2rem            ;
+  text-align            : center          ;
+  column-gap            : 2rem            ;
+  align-items           : center          ;
+  justify-items         : center          ;
+}
 
 .agencias-img{
   display         : flex    ;
@@ -111,10 +124,10 @@ footer {
 
 .texto-agencias{
   font-family   : 'Montserrat', sans-serif  ;
-  font-size     : 50px                      ;
+  font-size     : 4rem                      ;
   margin-top    : 0                         ;
   margin-bottom : 0                         ;
-  font-weight   : bold                      ;
+  font-weight   : 500                       ;
   margin-right  : 10px                      ;
   color         : white                   ;
   text-align    : center                    ;
@@ -124,7 +137,7 @@ footer {
   font-family   : 'Montserrat', sans-serif  ;
   margin-top    : 0                         ;
   margin-bottom : 2rem                      ;
-  font-size     : 20px                      ;
+  font-size     : 2rem                      ;
   font-weight   : 300                       ;
   color         : white                   ;
   text-align    : center                    ;
@@ -136,15 +149,24 @@ footer {
   margin-right  : 1rem  ;
 }
 
-.agencias {
-  display               : grid            ;
-  grid-template-columns : repeat(2, 1fr)  ;
-  margin-top            : 2rem            ;
-  text-align            : center          ;
-  column-gap            : 2rem            ;
-  align-items           : center          ;
-  justify-items         : center          ;
+.imagen_inicio {
+  max-height                   : 450px ;
+  border-top-left-radius       : 4rem  ;
+  border-bottom-left-radius    : 4rem  ;
 }
+
+.imgUbicacionTorreon {
+  max-height      : 400px                           ;
+  border-radius   : 3rem                            ;
+  margin-right    : 1rem                            ;
+  margin-block    : 1rem                            ;
+  transition      : transform 0.3s, max-height 0.3s ;
+}
+
+.imgUbicacionTorreon:hover {
+  transform: scale(1.075);
+}
+
 
 /*===============================================================AGENCIAS=======================================================================*/
 
@@ -221,10 +243,24 @@ footer {
   padding       : 1.5rem 2rem                                                           ;
   border-radius : 50px                                                                  ;
   font-weight   : 700                                                                   ;
-  font-size     : 20px                                                                  ;
+  font-size     : 1.75rem                                                               ;
   font-family   : 'Montserrat', sans-serif                                              ;
-  background    : linear-gradient(135deg, rgb(223, 139, 62) 50%, rgb(182, 166, 20)) ;
+  background    : linear-gradient(135deg, rgba(243,174,11,255) 50%, rgba(252,205,2,255));
+  color         : black                                                               ;
   max-width     : 80%                                                                   ;
+  margin-left: 5rem;
+}
+
+.centrarTextoIndex {
+
+  padding-right : 8rem;
+
+}
+
+.centrarTextoSucursal {
+
+  padding-left : 7rem;
+
 }
 
 /*=================================================================INDEX========================================================================*/
@@ -254,8 +290,15 @@ footer {
   border-radius   : 3rem             ;
 }
 
+
+
 .imagen-servicios {
   border-radius : 3rem  ;
+}
+
+.colorTextoBanner {
+  color: #ebf707;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5); /* Agrega una sombra de texto */
 }
 
 .servicios {
@@ -267,6 +310,94 @@ footer {
 .centrar {
   text-align  : center  ;
 }
+
+
+/* Grid del apartado de los servicios */
+
+.grid-container {
+  display               : grid              ;
+  grid-template-columns : repeat(3, 1fr)    ;
+  grid-template-rows    : repeat(2, auto)   ;
+  column-gap            : 2rem              ;
+  padding               : 4rem              ;
+}
+
+/* Estilo para cada ítem en el grid */
+.grid-item {
+  text-align        : center  ;
+  padding           : 1.5rem  ;
+}
+
+/* Estilo para las imágenes dentro de los ítems */
+.grid-item img {
+  max-width     : 100%                          ;
+  height        : auto                          ;
+  display       : block                         ;
+  margin        : 0 auto                        ;
+  border-radius : 2rem                          ;
+  filter        : grayscale(100%)               ;   /* Este de aqui */
+  transition    : transform 0.3s, filter 0.3s   ;
+}
+
+                                    /* NOTAAAAAA de Efraín */
+
+/* Si no es de su agrado el cambio de color o no se les hace intuitivo para el usuario final
+pueden quitar este codigo para que deje de estar en escala de grises los servicios */
+
+.grid-item img:hover {
+  transform: scale(1.1)     ;
+  filter   : grayscale(0%)  ;     /* Y este de aqui */
+}
+
+/* Estilo para el texto debajo de las imágenes */
+.grid-item p {
+  margin: 0;
+}
+
+.texto-servicios-img {
+  font-family : var(--fuentePrincipal)  ;
+  font-size   : 3rem                    ;
+  color       : #ffffffd6             ;
+  text-align  : center                  ;
+  padding-top : 2rem;
+}
+
+.todosServicios-img{
+  display         : flex    ;
+  justify-content : center  ; 
+  margin-bottom   : 8rem    ;
+}
+
+.imgTodosServicios {
+  max-height    : 500px ;
+  border-radius : 3rem  ;
+  margin-inline : 8rem  ;
+}
+
+.gridTodosServicios {
+  display               : grid            ;
+  grid-template-columns : repeat(2, 1fr)  ;
+  margin-top            : 2rem            ;
+  text-align            : center          ;
+  column-gap            : 2rem            ;
+  align-items           : center          ;
+  justify-items         : center          ;
+  padding-inline: 7rem;
+}
+
+
+.textoTodosServicios{
+  font-family   : 'Montserrat', sans-serif  ;
+  font-size     : 2rem                      ;
+  margin-top    : 0                         ;
+  margin-bottom : 0                         ;
+  font-weight   : 500                       ;
+  margin-right  : 10px                      ;
+  color         : white                   ;
+  text-align    : center                    ;
+}
+
+/* Grid del apartado de los servicios */  
 
 /*===============================================================SERVICIOS======================================================================*/
 
