@@ -1,72 +1,41 @@
-/*
-
 // Código para una conexión a la Base de datos
-// de manera forma "Vanilla"
-
-const { databaseConfig } = require('./config/database.config');
-const mysql2 = require('mysql2/promise');
-// const mysql = require('mysql');
-// const mysql2 = require('mysql2');
-
-const connection = mysql2.createPool({
-    connectionLimit: 10,
-    host: databaseConfig.host,
-    database: databaseConfig.database,
-    user: databaseConfig.user,
-    password: databaseConfig.password
-});
-
-const getConnetion = () => {
-    return connection;
-};
-
-module.exports = {
-    getConnetion
-};
-*/
-
-// Código para verificar la conexión a la BD,
-// sólo es para desarrollo.
-
-/*
-
-const mysql = require('mysql');
- 
-const connection = mysql.createConnection({
-    host: databaseConfig.host,
-    database: databaseConfig.database,
-    user: databaseConfig.user,
-    password: databaseConfig.password
-});
- 
-connection.connect((err) => {
-    if(err) throw err;
-    console.log('Conexión exitosa');
-});*/
-
-// Conexión a  la base de datos a través de Sequelize
-// se crea una piscina de conexiones
-// para manejar múltiples conexiones
-// de los módulos. 
+// de manera "Vanilla"
 
 const databaseConfig = require('./config/database.config');
-const mysql2 = require('mysql2/promise');
-const { Sequelize, DataTypes } = require('sequelize');
+const mariadb = require('mariadb');
 
-const connection = new Sequelize (
-    databaseConfig.database,
-    databaseConfig.user,
-    databaseConfig.password,
-    {
-        host: databaseConfig.host,
-        dialect: 'mysql',
-        pool: {
-            max: 10,
-            min: 0,
-            acquire: 30000,
-            idle: 10000
-        }
+const pool = mariadb.createPool({
+     host: databaseConfig.host, 
+     user: databaseConfig.user, 
+     password: databaseConfig.password,
+     database: databaseConfig.database,
+     connectionLimit: 5
+});
+
+// Función para probar la conexión
+async function testConnection() {
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    console.log('Conexión a la base de datos establecida correctamente.');
+
+    // Realiza una consulta de prueba
+    const rows = await conn.query('SELECT 1 as result');
+    if (rows[0].result === 1) {
+      console.log('La consulta de prueba fue exitosa.');
+    } else {
+      console.error('La consulta de prueba no fue exitosa.');
     }
-);
+  } catch (err) {
+    console.error('Error al establecer la conexión:', err);
+  } finally {
+    if (conn) {
+      conn.release(); // Devuelve la conexión al pool
+    }
+  }
+}
 
-module.exports = connection;
+// Se llama a la función para probar la conexión
+testConnection();
+
+module.exports = pool;

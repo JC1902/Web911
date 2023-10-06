@@ -19,15 +19,15 @@ app.set('port', process.env.PORT || 3000);
 
 // middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 app.use(session({
     secret: 'hbyUxauH6Rxuojj2hwrA6jDBfDLgoJ',
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 }));
-app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use((req, res, next) => {
     app.locals.signupMessage = req.flash('signupMessage');
@@ -40,11 +40,15 @@ app.use( express.static(path.join(__dirname, '../../public') ) );
 
 // routes
 const indexRoutes = require('./routes/index.routes');
+const authRoutes = require('./routes/auth.routes');
 const mailRoutes = require('./routes/correo.routes');
 
-app.use('/', indexRoutes);
-app.use('/mail', mailRoutes);
+app.use(indexRoutes);
+app.use(authRoutes);
+app.use(mailRoutes);
 
+
+// líneas de arranque del servidor
 app.listen( app.get('port'), () => {
     console.log('Server running on port', app.get('port') );
 } );
