@@ -60,7 +60,7 @@ async function registerUser(email, password) {
 
         connection.release();
         
-        console.log("Registered user:", user);
+	console.log("Registered user:", user);
         return user;
     } catch (error) {
         console.error(error);
@@ -88,10 +88,26 @@ async function comparePassword(email, password) {
     }
 }
 
+// Metodo para la comparacion de los roles de usuario
+async function identifyRole(id) {
+	
+    try{
+        const connection = await pool.getConnection();
+        const role = await connection.query('SELECT role FROM Users WHERE id = ?', id);
+        connection.release();
+
+    }catch(error) {
+
+        console.log(error);
+    }
+
+}
+
 module.exports = {
     getUserById,
     getUserByEmail,
     getEmail,
     registerUser,
-    comparePassword
+    comparePassword,
+    identifyRole
 };
