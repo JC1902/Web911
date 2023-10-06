@@ -23,4 +23,8 @@ router.get('/servicios', (req, res, next) => {
     res.render('servicios');
 });
 
+router.get('admin/dashboard', (req, res, next) => {
+    res.render('adminDashboard');
+});
+
 module.exports = router;
