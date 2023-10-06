@@ -1,0 +1,55 @@
+$rojo911            : #d12926;
+$amarillo911        : #fef709;
+$blanco             : #ffffff;
+$fuentePrincipal    : 'Monserrat', sans-serif;
+
+.html {
+    box-sizing  : border-box;
+    /*font-size : 62.5%;*/
+}
+
+.body {
+    background  : linear-gradient( 235deg, black 30%, rgb(62, 2, 2) );
+    margin      : 0;
+    min-height  : 100vh;
+}
+
+/*===============================================================AGENCIAS=======================================================================*/
+
+.agencias {
+    display                 : grid;
+    grid-template-columns   : repeat( 3, 1fr );
+    margin-top              : 2rem;
+    text-align              : center;
+    column-gap              : 2rem;
+    align-items             : center;
+    justify-items           : center;
+}
+
+.agenias-img {
+    display         : flex;
+    justify-content : center;
+    margin-top      : 100px;
+}
+
+.texto-agencias {
+    font-family     : $fuentePrincipal;
+    font-size       : 4rem;
+    margin-top      : 0;
+    margin-bottom   : 0;
+    font-weight     : 500;
+    margin-right    : 10px;
+    color           : $blanco;
+    text-align      : center;
+}
+
+.texto-agencias-horario {
+    font-family     : $fuentePrincipal;
+    margin-top      : 0;
+    margin-bottom   : 2rem;
+    font-size       : 2rem;
+    font-weight     : 300;
+    color           : #ffffff;
+    text-align      : center;
+}
+
