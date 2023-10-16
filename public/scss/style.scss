@@ -2,14 +2,19 @@ $rojo911            : #d12926;
 $amarillo911        : #fef709;
 $blanco             : #ffffff;
 $fuentePrincipal    : 'Monserrat', sans-serif;
+$negro              : #000000;
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
 
 .html {
     box-sizing  : border-box;
-    /*font-size : 62.5%;*/
+    font-size : 62.5%;
 }
 
 .body {
-    background  : linear-gradient( 235deg, black 30%, rgb(62, 2, 2) );
+    background  : linear-gradient( 235deg, black 30%, rgb(85, 4, 4) );
     margin      : 0;
     min-height  : 100vh;
 }
@@ -26,7 +31,7 @@ $fuentePrincipal    : 'Monserrat', sans-serif;
     justify-items           : center;
 }
 
-.agenias-img {
+.agencias-img {
     display         : flex;
     justify-content : center;
     margin-top      : 100px;
@@ -53,3 +58,76 @@ $fuentePrincipal    : 'Monserrat', sans-serif;
     text-align      : center;
 }
 
+.imgUbicacionTorreon {
+    max-height: 400px;
+    border-radius: 3rem;
+    margin-right: 1rem;
+    margin-block: 1rem;
+    transition: transform 0.3s, max-height 0.3s;
+    margin-right: 8rem;
+
+    &:hover {
+        transform: scale(1.075);
+    }
+}
+
+/*===============================================================AGENCIAS=======================================================================*/
+
+/*=================================================================INDEX========================================================================*/
+.img-inicio {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.texto-auto911 {
+    font-family: $fuentePrincipal;
+    font-size: 75px;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    margin-right: 10px;
+    color: $blanco;
+}
+
+.texto-taller {
+    font-family: $fuentePrincipal;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 25px;
+    font-weight: 300;
+    color: $blanco;
+}
+
+.texto-lema {
+    font-family: $fuentePrincipal;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 25px;
+    font-weight: 300;
+    color: $blanco;
+}
+
+.imagen_inicio {
+    max-height: 450px;
+    border-top-left-radius: 4rem;
+    border-bottom-left-radius: 4rem;
+    margin-left: 8rem;
+}
+
+.servicios-boton {
+    margin-top: 2rem;
+    margin-left: 5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.75rem;
+    font-family: $fuentePrincipal;
+    background: linear-gradient(135deg, #f3ad0b 50%, #fccd02);
+    color: $negro;
+    max-width: 80%;
+    text-align: center;
+    text-decoration: none;
+}
+/*=================================================================INDEX========================================================================*/
