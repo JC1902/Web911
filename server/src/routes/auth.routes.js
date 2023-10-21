@@ -47,11 +47,6 @@ router.get('/auth', async (req, res/*, next*/) => {
     // next();
 });
 
-/* 
-router.get('/dashboard', (req, res, next) => {
-    res.render('dashboard');
-}); */
-
 // -------- MIDDLEWARES ------------
 function isAuthenticated(req, res, next) {
     if(!req.isAuthenticated()) {
@@ -66,24 +61,3 @@ module.exports.authRoutes = router;
 
 // Exportamos las funciones
 module.exports.isAuthenticated = isAuthenticated;
-
-// module.exports.isAdmin = isAdmin;
-
-/*
-function isAdmin(userRole) { 
-    let role = userController.identifyRole(userRole);
-    if( role == "Admin" ){ return true; }
-    return false;
-}*/
-
-/*
-router.get('/auth/signup', (req, res, next) => {
-    res.render('signup');
-});*/
-
-/*
-router.post('/auth/signup', passport.authenticate('local-signup', {
-    successRedirect: '/auth',
-    failureRedirect: '/auth/signup',
-    passReqToCallback: true
-}));*/

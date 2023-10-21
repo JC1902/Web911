@@ -29,45 +29,6 @@ passport.deserializeUser( async (cuentaObject, done) => {
     done(null, cuenta);
 });
 
-// Control del registro de usuario
-/*
-passport.use('local-signup', new LocalStrategy(
-
-    {usernameField: 'email',
-     passwordField: 'password',
-     passReqToCallback: true
-    },
-
-    async (req, email, password, done) => {
-
-        console.log('Recibida una solicitud desde: ' + req.url);
-        console.log('Email de llegada: ', email);
-        console.log('Contraseña de llegada: ', password);
-
-        const registeredMail = await userController.getEmail(email);
-
-        console.log('Resultado búsqueda de mail', registeredMail);
-
-        if (registeredMail.length !== 0) {
-
-            console.log('Email ya ocupado');
-
-            return done(null, false, req.flash(
-                'signupMessage',
-                'The email is already taken.'
-            ));
-
-        } else {
-
-            console.log('Registrando usuario...');
-
-            const newUser = await userController.registerUser(email, password);
-            console.log('Usuario registrado: ', newUser);
-            done(null, newUser);
-        }
-    }));
-*/
-
 // Control de inicio de sesión de usuario
 passport.use('local-signin', new LocalStrategy(
     {usernameField: 'folio',
