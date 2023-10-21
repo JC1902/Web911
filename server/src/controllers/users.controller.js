@@ -19,7 +19,6 @@ async function getUserById(id) {
     }
 }
 
-
 // Obtener los datos del usuario por su email
 async function getUserByEmail(email) {
     try {
@@ -59,9 +58,9 @@ async function registerUser(email, password) {
         const [user] = await connection.query(selectUserQuery, [userRegistration.insertId]);
 
         connection.release();
-        
-	console.log("Registered user:", user);
+	    console.log("Registered user:", user);
         return user;
+        
     } catch (error) {
         console.error(error);
     }
@@ -89,18 +88,16 @@ async function comparePassword(email, password) {
 }
 
 // Metodo para la comparacion de los roles de usuario
-async function identifyRole(id) {
+async function getRole(id) {
 	
     try{
         const connection = await pool.getConnection();
-        const role = await connection.query('SELECT role FROM Users WHERE id = ?', id);
+        const [role] = await connection.query('SELECT role FROM Users WHERE id = ?', id);
         connection.release();
-
+        return role;
     }catch(error) {
-
         console.log(error);
     }
-
 }
 
 module.exports = {
@@ -109,5 +106,5 @@ module.exports = {
     getEmail,
     registerUser,
     comparePassword,
-    identifyRole
+    getRole
 };

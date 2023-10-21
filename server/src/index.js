@@ -40,13 +40,14 @@ app.use( express.static(path.join(__dirname, '../../public') ) );
 
 // routes
 const indexRoutes = require('./routes/index.routes');
-const authRoutes = require('./routes/auth.routes');
+const { authRoutes } = require('./routes/auth.routes');
 const mailRoutes = require('./routes/correo.routes');
+const crudRoutes = require('./routes/crud.routes.js')
 
 app.use(indexRoutes);
 app.use(authRoutes);
+app.use(crudRoutes);
 app.use(mailRoutes);
-
 
 // líneas de arranque del servidor
 app.listen( app.get('port'), () => {
