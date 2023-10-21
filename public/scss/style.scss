@@ -130,4 +130,179 @@ $negro              : #000000;
     text-align: center;
     text-decoration: none;
 }
+
+@media screen and (max-width: 1044px) {
+    .img-inicio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 100vh;
+    }
+
+    .texto-auto911 {
+        font-family: $fuentePrincipal;
+        position: absolute;
+        font-size: 75px;
+        font-weight: bold;
+        color: $blanco;
+        z-index: 1;
+    }
+
+    .texto-taller {
+        font-family: $fuentePrincipal;
+        position: absolute;
+        font-size: 25px;
+        font-weight: 300;
+        color: $blanco;
+        z-index: 1;
+    }
+    
+    .texto-lema {
+        font-family: $fuentePrincipal;
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 25px;
+        font-weight: 300;
+        color: $blanco;
+        z-index: 1;
+    }
+    
+    .imagen_inicio {
+        width: auto;
+        height: auto;
+        position: absolute;
+        border-radius: 4rem;
+    }
+
+    .servicios-boton {
+        position: absolute;
+        padding: 1.5rem 2rem;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 1.75rem;
+        font-family: $fuentePrincipal;
+        background: linear-gradient(135deg, #f3ad0b 50%, #fccd02);
+        color: $negro;
+        max-width: 100%;
+        text-align: center;
+        text-decoration: none;
+        z-index: 1;
+        bottom: calc(100vh - 95vh);
+        left: 35rem;
+    }
+}
 /*=================================================================INDEX========================================================================*/
+
+/*============================================================SIGNIN Y SIGNUP===================================================================*/
+.signin {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-top: 0rem;
+}
+
+.signup {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.formulario {
+    position: 10rem;
+    margin-left: 62.5rem;
+    background-color: $rojo911;
+    width: 30rem;
+    height: 35rem;
+    border-radius: 2rem;
+}
+
+.campos {
+    margin-top: 30px;
+    padding: 0px 50px 0px;
+    border-radius: .5rem;
+    width: 90%;
+    height: 50px;
+    font-size: 15px;
+}
+
+.campos-signup {
+    position: relative;
+    top: -70px;
+    margin-top: 35px;
+    padding: 0px 70px 3px;
+    border-radius: .5rem;
+    width: 90%;
+    height: 50px;
+    font-size: 15px;
+}
+
+.boton-signin {
+    background-color: $amarillo911;
+    border-color: $amarillo911;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    margin-top: 35px;
+    width: 93%;
+    height: 50px;
+    font-size: 20px;
+}
+
+.boton-signup {
+    position: relative;
+    top: -40px;
+    background-color: $amarillo911;
+    border-color: $amarillo911;
+    border-radius: 1rem;
+    margin-left: 1rem;
+    margin-top: -15px;
+    width: 93%;
+    height: 45px;
+    font-size: 20px;
+}
+
+.vinculo {
+    font-family: $fuentePrincipal;
+    font-weight: 300;
+    color: $blanco;
+    margin-left: 17px;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.texto-sesion {
+    font-family: $fuentePrincipal;
+    text-align: center;
+    font-size: 2rem;
+    padding: 5px 10px -10px 0px;
+    color: $blanco;
+    margin-top: 10px;
+}
+
+.circulo {
+    position: relative;
+    left: 72.6rem;
+    background-color: $rojo911;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    top: 4.4rem;
+}
+
+.circulo-img {
+    position: relative;
+    left: 2.5rem;
+    top: 1.5rem;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+/*============================================================SIGNIN Y SIGNUP===================================================================*/
