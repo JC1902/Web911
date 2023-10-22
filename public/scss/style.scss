@@ -37,6 +37,20 @@ $negro              : #000000;
     margin-top      : 100px;
 }
 
+@media screen and (max-width: 1280px) {
+    .agencias-img {
+    display         : grid;
+    margin: 3rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+    .agencias-img {
+    display         : block;
+    margin: 3rem;
+  }
+}
+
 .texto-agencias {
     font-family     : $fuentePrincipal;
     font-size       : 4rem;
@@ -46,6 +60,22 @@ $negro              : #000000;
     margin-right    : 10px;
     color           : $blanco;
     text-align      : center;
+}
+
+@media screen and (max-width: 1280px) {
+    .texto-agencias {
+        font-size : 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .texto-agencias {
+        font-size : 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .texto-agencias-horario {
@@ -58,6 +88,18 @@ $negro              : #000000;
     text-align      : center;
 }
 
+@media screen and (max-width: 800px) {
+.texto-agencias-horario {
+        font-size : 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .texto-agencias-horario {
+        //font-size : 1.75rem;
+        }
+    }
+
 .imgUbicacionTorreon {
     max-height: 400px;
     border-radius: 3rem;
@@ -68,6 +110,21 @@ $negro              : #000000;
 
     &:hover {
         transform: scale(1.075);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .imgUbicacionTorreon {
+        max-width: 100%;
+        margin-block: 0rem;
+        margin-right: 0rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .imgUbicacionTorreon {
+        max-width: 100%;
+        margin-block: 0rem;
     }
 }
 
@@ -399,6 +456,8 @@ $negro              : #000000;
         max-width: 40rem;
         margin: 0 auto;
         font-family: $fuentePrincipal;
+        padding-left: 3rem;
+        padding-right: 3rem;
           
     }
     
@@ -420,6 +479,21 @@ $negro              : #000000;
     margin-top: 3rem;
   }
 
+  @media screen and (max-width: 1280px) {
+    .encabezado__servicios{
+        font-size: 5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+  @media screen and (max-width: 800px) {
+    .encabezado__servicios{
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+}
+
+
   .texto__servicios{
     padding-top: .5rem;
     color: $blanco;
@@ -435,20 +509,76 @@ $negro              : #000000;
     text-align: center;
 }
 
+@media screen and (max-width: 1280px) {
+    .grid__servicios{
+    grid-template-columns: repeat(2, 1fr);
+    //grid-template-rows: repeat(3, 1fr);
+    //margin: auto;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .grid__servicios{
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    margin: auto;
+    }
+}
+
 .item__servicios{
     align-content: center;
     text-align: center;
     
 }
 
+@media screen and (max-width: 1280px) {
+    .item__servicios{
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .item__servicios{
+        padding: 2rem;
+    }
+}
+
 .item__servicios--img{
     width: 35rem;
     border-radius: 2rem;
+    padding: 1rem;
 }
+
+@media screen and (max-width: 1280px) {
+    .item__servicios--img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .item__servicios--img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
 .item__servicios--texto{
     color: $blanco;
     font-family: $fuentePrincipal;
     font-size: 2rem;
+}
+
+@media screen and (max-width: 1280px) {
+    .item__servicios--texto{
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .item__servicios--texto{
+        padding: 1rem;
+    }
 }
 
 .contenedor__servicios{
@@ -457,8 +587,37 @@ $negro              : #000000;
     justify-content: center;
 }
 
+@media screen and (max-width: 1280px) {
+    .contenedor__servicios {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .contenedor__servicios {
+        display: block;
+    }
+}
+
+
 .img__servicios{
     width: 60rem;
+}
+
+@media screen and (max-width: 1280px) {
+    .img__servicios {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .img__servicios {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .texto__todos--servicios{
@@ -466,4 +625,17 @@ $negro              : #000000;
     font-family: $fuentePrincipal;
     font-size: 1.5rem;
     margin: auto 0;
+}
+
+@media screen and (max-width: 1280px) {
+    .texto__todos--servicios {
+        margin: 4rem;
+        font-size: 2.5rem;
+    }
+}
+@media screen and (max-width: 800px) {
+    .texto__todos--servicios {
+        margin: 2rem;
+        font-size: 2rem;
+    }
 }
