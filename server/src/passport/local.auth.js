@@ -7,7 +7,7 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const userController = require('../controllers/users.controller');
+const cuentasController = require('../controllers/cuentas.controller');
 
 // Control de la serialización del usuario
 // se guarda en archivos del navegador
@@ -15,87 +15,47 @@ const userController = require('../controllers/users.controller');
 // autenticación una vez la sesión haya sido
 // iniciada.
 
-passport.serializeUser( (user, done) => {
-
-    console.log("Se serializó el usuario con ID:", user);
-    done(null, user);
+passport.serializeUser( (cuenta, done) => {
+    console.log("Se serializó la cuenta:", cuenta);
+    done(null, cuenta);
 });
 
-passport.deserializeUser( async (userArray, done) => {
+passport.deserializeUser( async (cuentaObject, done) => {
+    console.log("Parametro: ", cuentaObject);
 
-	    const userObject = userArray[0];
-
-    console.log("ID para deseralizar: ", userObject);
-
-    const user = await userController.getUserById(userObject.id);
-    console.log("Se deserializó el usuario: ", user);
-    done(null, user);
+	const cuentaID = cuentaObject.cta_id;
+    const cuenta = await cuentasController.getCuentaPorID(cuentaID);
+    console.log("Se deserializó la cuenta: ", cuenta);
+    done(null, cuenta);
 });
-
-// Control del registro de usuario
-passport.use('local-signup', new LocalStrategy(
-
-    {usernameField: 'email',
-     passwordField: 'password',
-     passReqToCallback: true
-    },
-
-    async (req, email, password, done) => {
-
-        console.log('Recibida una solicitud desde: ' + req.url);
-        console.log('Email de llegada: ', email);
-        console.log('Contraseña de llegada: ', password);
-
-        const registeredMail = await userController.getEmail(email);
-
-        console.log('Resultado búsqueda de mail', registeredMail);
-
-        if (registeredMail.length !== 0) {
-
-            console.log('Email ya ocupado');
-
-            return done(null, false, req.flash(
-                'signupMessage',
-                'The email is already taken.'
-            ));
-
-        } else {
-
-            console.log('Registrando usuario...');
-
-            const newUser = await userController.registerUser(email, password);
-            console.log('Usuario registrado: ', newUser);
-            done(null, newUser);
-        }
-    }));
 
 // Control de inicio de sesión de usuario
 passport.use('local-signin', new LocalStrategy(
-    {usernameField: 'email',
+    {usernameField: 'folio',
     passwordField: 'password',
     passReqToCallback: true},
     
-    async (req, email, password, done)=> {
+    async (req, folio, password, done)=> {
 
-	    console.log("Email: ", email);
+	    console.log("Folio: ", folio);
 	    console.log("Password: ", password);
 
-	const userEmail = await userController.getEmail(email);
+	    const cuenta = await cuentasController.getCuentaPorFolio(folio);
 
         // Compara si existe el usuario
-        if(userEmail == null){
-            return done(null, false, req.flash('signinMessage','No user found.'));
+        if(cuenta == null){
+            return done(null, false, req.flash('signinMessage','Cuenta no encontrada.'));
         }
 
         // Comparación de contraseñas
-        const correctPassword = await userController.comparePassword(email, password);
+        const correctPassword = await cuentasController.comparePassword(folio, password);
 
         if(!correctPassword){
-            return done(null, false, req.flash('signinMessage','Incorrect Password'));
+            return done(null, false, req.flash('signinMessage','Contraseña incorrecta'));
 		}
 
-        const user = await userController.getUserByEmail(email);
-	console.log("User", user);
+        console.log("Cuenta: ", cuenta);
         console.log('Sesión iniciada');
-        done(null, user);
+        done(null, cuenta);
+        
     }));
