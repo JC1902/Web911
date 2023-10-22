@@ -41,6 +41,7 @@ $fuente-principal: 'Monserrat', sans-serif;
 .logo_a {
     color: $blanco;
     margin-left: 25px;
+    text-decoration: none;
 }
 
 .menu_items {
@@ -95,7 +96,7 @@ $fuente-principal: 'Monserrat', sans-serif;
 }
 
 ul.show {
-    top: 75px;
+    top: 0px;
     z-index: 1000;
 }
 
@@ -111,12 +112,14 @@ ul.show {
     .menu_items {
         position: fixed;
         width: 100vw;
-        height: calc(100% - 65px);
+        height: calc(100vh - 30px);
+        //height: 50vh;
         background-color: $rojo911;
         top: -200vh;
         text-align: center;
         transition: all 0.4s;
         flex-direction: column;
+        z-index: 1;
     }
 
     .menu_items-li {
@@ -143,6 +146,6 @@ ul.show {
 }
 
 .active {
-    color: $amarillo911;
+    color: $blanco;
     border-bottom: 3px solid $amarillo911;
 }
