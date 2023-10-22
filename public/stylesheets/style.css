@@ -292,5 +292,181 @@
 }
 
 /*============================================================SIGNIN Y SIGNUP===================================================================*/
+/*============================================================CONTACTO===================================================================*/
+.contenedor__contacto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 120rem;
+  margin: 0 auto;
+  font-family: "Monserrat", sans-serif;
+}
+
+.contacto__contacto {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 2rem;
+  text-align: center;
+  column-gap: 2rem;
+  align-items: center;
+  justify-items: center;
+}
+
+.encabezado__contacto {
+  color: #ffffff;
+  text-align: center;
+}
+
+.texto__contacto {
+  color: #ffffff;
+  font-family: "Monserrat", sans-serif;
+  font-size: 1.5rem;
+  text-align: justify;
+  margin-top: 0.5rem;
+}
+
+.redes-sociales__contacto {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.redes-sociales__contacto img {
+  margin-right: 1rem; /* Espacio entre la imagen y el texto */
+  width: 2rem;
+}
+
+.a__contacto {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.FB {
+  margin: 1rem;
+  border-radius: 1rem;
+}
+
+.footer__contacto {
+  position: absolute;
+  width: 100%;
+  font-family: "Monserrat", sans-serif;
+  color: #ffffff;
+  font-size: 1rem;
+  text-align: center;
+  bottom: 0;
+}
+
+@media screen and (max-width: 1044px) {
+  .contenedor__contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    font-family: "Monserrat", sans-serif;
+  }
+  .contacto__contacto {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+    text-align: center;
+    column-gap: 2rem;
+    align-items: center;
+    justify-items: center;
+  }
+  .encabezado__contacto {
+    color: #ffffff;
+    text-align: center;
+  }
+  .texto__contacto {
+    color: #ffffff;
+    font-family: "Monserrat", sans-serif;
+    font-size: 1.5rem;
+    text-align: justify;
+    margin-top: 0.5rem;
+  }
+  .redes-sociales__contacto {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+  }
+  .redes-sociales__contacto img {
+    margin-right: 1rem; /* Espacio entre la imagen y el texto */
+    width: 2rem;
+  }
+  .a__contacto {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .FB {
+    margin: 1rem;
+    border-radius: 1rem;
+  }
+  .footer__contacto {
+    position: absolute;
+    width: 100%;
+    font-family: "Monserrat", sans-serif;
+    color: #ffffff;
+    font-size: 1rem;
+    text-align: center;
+    bottom: 0;
+  }
+}
+@media screen and (max-width: 800px) {
+  .contenedor__contacto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 40rem;
+    margin: 0 auto;
+    font-family: "Monserrat", sans-serif;
+  }
+  .contacto__contacto {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 2rem;
+    text-align: center;
+    column-gap: 2rem;
+    align-items: center;
+    justify-items: center;
+  }
+  .encabezado__contacto {
+    color: #ffffff;
+    text-align: center;
+  }
+  .texto__contacto {
+    color: #ffffff;
+    font-family: "Monserrat", sans-serif;
+    font-size: 1.5rem;
+    text-align: justify;
+    margin-top: 0.5rem;
+  }
+  .redes-sociales__contacto {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+  }
+  .redes-sociales__contacto img {
+    margin-right: 1rem; /* Espacio entre la imagen y el texto */
+    width: 2rem;
+  }
+  .a__contacto {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  .FB {
+    margin: 1rem;
+    border-radius: 1rem;
+  }
+  .footer__contacto {
+    position: absolute;
+    width: 100%;
+    font-family: "Monserrat", sans-serif;
+    color: #ffffff;
+    font-size: 1rem;
+    text-align: center;
+    bottom: 0;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
