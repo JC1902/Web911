@@ -388,62 +388,6 @@ $negro              : #000000;
       
 }
 
-.contacto__contacto{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin-top: 2rem;
-    text-align: center;
-    column-gap: 2rem;
-    align-items: center;
-    justify-items: center;
-  
-  }
-
-  .encabezado__contacto {
-    color: $blanco;
-    text-align: center;
-  
-  }
-
-  .texto__contacto {
-    color: $blanco;
-    font-family: $fuentePrincipal;
-    font-size: 1.5rem;
-    text-align: justify;
-    margin-top: .5rem;
-  }
-
-  .redes-sociales__contacto {
-    display: flex;
-    flex-direction: column;
-    text-align: justify;  
-  }
-  
-  .redes-sociales__contacto img {
-    margin-right: 1rem; /* Espacio entre la imagen y el texto */
-    width: 2rem;
-  }
-
-  .a__contacto{
-    text-decoration: none;
-    color: $blanco;
-  }
-  
-  
-  .FB{
-    margin: 1rem;
-    border-radius: 1rem;
-  }
-  
-  .footer__contacto{
-    position: absolute;
-    width: 100%;
-    font-family: $fuentePrincipal;
-    color: $blanco;
-    font-size: 1rem;
-    text-align: center;
-    bottom: 0;
-  }
 }
 
 @media screen and (max-width: 800px) {
@@ -468,50 +412,58 @@ $negro              : #000000;
         justify-items: center;
       
       }
-    
-      .encabezado__contacto {
-        color: $blanco;
-        text-align: center;
-      
-      }
-    
-      .texto__contacto {
-        color: $blanco;
-        font-family: $fuentePrincipal;
-        font-size: 1.5rem;
-        text-align: justify;
-        margin-top: .5rem;
-      }
-    
-      .redes-sociales__contacto {
-        display: flex;
-        flex-direction: column;
-        text-align: justify;  
-      }
-      
-      .redes-sociales__contacto img {
-        margin-right: 1rem; /* Espacio entre la imagen y el texto */
-        width: 2rem;
-      }
-    
-      .a__contacto{
-        text-decoration: none;
-        color: $blanco;
-      }
-      
-      
-      .FB{
-        margin: 1rem;
-        border-radius: 1rem;
-      }
-      
-      .footer__contacto{
-        position: absolute;
-        width: 100%;
-        font-family: $fuentePrincipal;
-        color: $blanco;
-        font-size: 1rem;
-        text-align: center;
-        bottom: 0;
-      }
     }
+/*============================================================SERVICIOS===================================================================*/
+.encabezado__servicios {
+    color: $blanco;
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .texto__servicios{
+    padding-top: .5rem;
+    color: $blanco;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+.grid__servicios{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: auto 12.5rem;
+    align-items: center;
+    text-align: center;
+}
+
+.item__servicios{
+    align-content: center;
+    text-align: center;
+    
+}
+
+.item__servicios--img{
+    width: 35rem;
+    border-radius: 2rem;
+}
+.item__servicios--texto{
+    color: $blanco;
+    font-family: $fuentePrincipal;
+    font-size: 2rem;
+}
+
+.contenedor__servicios{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.img__servicios{
+    width: 60rem;
+}
+
+.texto__todos--servicios{
+    color: $blanco;
+    font-family: $fuentePrincipal;
+    font-size: 1.5rem;
+    margin: auto 0;
+}
