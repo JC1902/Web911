@@ -43,7 +43,7 @@
   }
 }
 .texto-agencias {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 4rem;
   margin-top: 0;
   margin-bottom: 0;
@@ -68,7 +68,7 @@
   }
 }
 .texto-agencias-horario {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-top: 0;
   margin-bottom: 2rem;
   font-size: 2rem;
@@ -117,7 +117,7 @@
 }
 
 .texto-auto911 {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 75px;
   margin-top: 0;
   margin-bottom: 0;
@@ -127,7 +127,7 @@
 }
 
 .texto-taller {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 25px;
@@ -136,7 +136,7 @@
 }
 
 .texto-lema {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   margin-top: 0;
   margin-bottom: 2rem;
   font-size: 25px;
@@ -158,7 +158,7 @@
   border-radius: 50px;
   font-weight: 700;
   font-size: 1.75rem;
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   background: linear-gradient(135deg, #f3ad0b 50%, #fccd02);
   color: #000000;
   max-width: 80%;
@@ -176,7 +176,7 @@
     height: 100vh;
   }
   .texto-auto911 {
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     position: absolute;
     font-size: 75px;
     font-weight: bold;
@@ -184,7 +184,7 @@
     z-index: 1;
   }
   .texto-taller {
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     position: absolute;
     font-size: 25px;
     font-weight: 300;
@@ -192,7 +192,7 @@
     z-index: 1;
   }
   .texto-lema {
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     position: absolute;
     top: 0;
     left: 0;
@@ -213,7 +213,7 @@
     border-radius: 50px;
     font-weight: 700;
     font-size: 1.75rem;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     background: linear-gradient(135deg, #f3ad0b 50%, #fccd02);
     color: #000000;
     max-width: 100%;
@@ -240,9 +240,15 @@
   margin-top: 5rem;
 }
 
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .formulario {
   position: 10rem;
-  margin-left: 62.5rem;
   background-color: #d12926;
   width: 30rem;
   height: 35rem;
@@ -293,17 +299,8 @@
   font-size: 20px;
 }
 
-.vinculo {
-  font-family: "Monserrat", sans-serif;
-  font-weight: 300;
-  color: #ffffff;
-  margin-left: 17px;
-  font-size: 15px;
-  text-decoration: none;
-}
-
 .texto-sesion {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   font-size: 2rem;
   padding: 5px 10px -10px 0px;
@@ -312,27 +309,20 @@
 }
 
 .circulo {
-  position: relative;
-  left: 72.6rem;
   background-color: #d12926;
   width: 10rem;
   height: 10rem;
   border-radius: 50%;
-  top: 4.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .circulo-img {
-  position: relative;
   left: 2.5rem;
   top: 1.5rem;
   max-width: 100%;
   max-height: 100%;
-}
-
-.container {
-  position: relative;
-  width: 100%;
-  margin-bottom: 2rem;
 }
 
 /*============================================================SIGNIN Y SIGNUP===================================================================*/
@@ -343,7 +333,7 @@
   align-items: center;
   max-width: 120rem;
   margin: 0 auto;
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .contacto__contacto {
@@ -363,7 +353,7 @@
 
 .texto__contacto {
   color: #ffffff;
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   text-align: justify;
   margin-top: 0.5rem;
@@ -393,7 +383,7 @@
 .footer__contacto {
   position: absolute;
   width: 100%;
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #ffffff;
   font-size: 1rem;
   text-align: center;
@@ -407,7 +397,7 @@
     align-items: center;
     max-width: 80rem;
     margin: 0 auto;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
   }
 }
 @media screen and (max-width: 800px) {
@@ -417,7 +407,7 @@
     align-items: center;
     max-width: 40rem;
     margin: 0 auto;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     padding-left: 3rem;
     padding-right: 3rem;
   }
@@ -512,7 +502,7 @@
 }
 .item__servicios--texto {
   color: #ffffff;
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 2rem;
 }
 
@@ -562,7 +552,7 @@
 }
 .texto__todos--servicios {
   color: #ffffff;
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.5rem;
   margin: auto 0;
 }
