@@ -49,6 +49,10 @@ router.get('/auth', async (req, res/*, next*/) => {
 
 // -------- MIDDLEWARES ------------
 function isAuthenticated(req, res, next) {
+
+    let auth = req.isAuthenticated();
+    console.log("Authentication: ", auth);
+
     if(!req.isAuthenticated()) {
         res.redirect('/'); 
         return;

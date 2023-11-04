@@ -20,12 +20,14 @@ passport.serializeUser( (cuenta, done) => {
     done(null, cuenta);
 });
 
-passport.deserializeUser( async (cuentaObject, done) => {
-    console.log("Parametro: ", cuentaObject);
+passport.deserializeUser( async (cuenta, done) => {
+    
+    // console.log("Parametro: ", cuentaObject);
 
-	const cuentaID = cuentaObject.cta_id;
-    const cuenta = await cuentasController.getCuentaPorID(cuentaID);
-    console.log("Se deserializó la cuenta: ", cuenta);
+	// const cuentaID = cuentaObject.cta_id;
+    // const cuenta = await cuentasController.getCuentaPorID(cuentaID);
+    // console.log("Se deserializó la cuenta: ", cuenta);
+
     done(null, cuenta);
 });
 
