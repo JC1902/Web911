@@ -1,61 +1,106 @@
-$rojo911            : #d12926;
-$amarillo911        : #fef709;
-$blanco             : #ffffff;
-$fuentePrincipal    : 'Monserrat', sans-serif;
-$negro              : #000000;
+$rojo911 : #d12926;
+$amarillo911 : #fef709;
+$blanco : #ffffff;
+$fuentePrincipal : 'Montserrat',
+sans-serif;
+$negro : #000000;
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
 
 .html {
-    box-sizing  : border-box;
-    font-size : 62.5%;
+    box-sizing: border-box;
+    font-size: 62.5%;
 }
 
 .body {
-    background  : linear-gradient( 235deg, black 30%, rgb(85, 4, 4) );
-    margin      : 0;
-    min-height  : 100vh;
+    background: linear-gradient(235deg, black 30%, rgb(85, 4, 4));
+    margin: 0;
+    min-height: 100vh;
 }
 
 /*===============================================================AGENCIAS=======================================================================*/
 
 .agencias {
-    display                 : grid;
-    grid-template-columns   : repeat( 3, 1fr );
-    margin-top              : 2rem;
-    text-align              : center;
-    column-gap              : 2rem;
-    align-items             : center;
-    justify-items           : center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2rem;
+    text-align: center;
+    column-gap: 2rem;
+    align-items: center;
+    justify-items: center;
 }
 
 .agencias-img {
-    display         : flex;
-    justify-content : center;
-    margin-top      : 100px;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+@media screen and (max-width: 1280px) {
+    .agencias-img {
+        display: grid;
+        margin: 3rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .agencias-img {
+        display: block;
+        margin: 3rem;
+    }
 }
 
 .texto-agencias {
-    font-family     : $fuentePrincipal;
-    font-size       : 4rem;
-    margin-top      : 0;
-    margin-bottom   : 0;
-    font-weight     : 500;
-    margin-right    : 10px;
-    color           : $blanco;
-    text-align      : center;
+    font-family: $fuentePrincipal;
+    font-size: 4rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-weight: 500;
+    margin-right: 10px;
+    color: $blanco;
+    text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+    .texto-agencias {
+        font-size: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .texto-agencias {
+        font-size: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .texto-agencias-horario {
-    font-family     : $fuentePrincipal;
-    margin-top      : 0;
-    margin-bottom   : 2rem;
-    font-size       : 2rem;
-    font-weight     : 300;
-    color           : #ffffff;
-    text-align      : center;
+    font-family: $fuentePrincipal;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 300;
+    color: #ffffff;
+    text-align: center;
+}
+
+@media screen and (max-width: 800px) {
+    .texto-agencias-horario {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .texto-agencias-horario {
+        //font-size : 1.75rem;
+    }
 }
 
 .imgUbicacionTorreon {
@@ -68,6 +113,21 @@ $negro              : #000000;
 
     &:hover {
         transform: scale(1.075);
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .imgUbicacionTorreon {
+        max-width: 100%;
+        margin-block: 0rem;
+        margin-right: 0rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .imgUbicacionTorreon {
+        max-width: 100%;
+        margin-block: 0rem;
     }
 }
 
@@ -158,7 +218,7 @@ $negro              : #000000;
         color: $blanco;
         z-index: 1;
     }
-    
+
     .texto-lema {
         font-family: $fuentePrincipal;
         position: absolute;
@@ -169,7 +229,7 @@ $negro              : #000000;
         color: $blanco;
         z-index: 1;
     }
-    
+
     .imagen_inicio {
         width: auto;
         height: auto;
@@ -194,6 +254,7 @@ $negro              : #000000;
         left: 35rem;
     }
 }
+
 /*=================================================================INDEX========================================================================*/
 
 /*============================================================SIGNIN Y SIGNUP===================================================================*/
@@ -211,9 +272,16 @@ $negro              : #000000;
     margin-top: 5rem;
 }
 
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .formulario {
     position: 10rem;
-    margin-left: 62.5rem;
+    //margin-left: 62.5rem;
     background-color: $rojo911;
     width: 30rem;
     height: 35rem;
@@ -264,15 +332,6 @@ $negro              : #000000;
     font-size: 20px;
 }
 
-.vinculo {
-    font-family: $fuentePrincipal;
-    font-weight: 300;
-    color: $blanco;
-    margin-left: 17px;
-    font-size: 15px;
-    text-decoration: none;
-}
-
 .texto-sesion {
     font-family: $fuentePrincipal;
     text-align: center;
@@ -283,26 +342,348 @@ $negro              : #000000;
 }
 
 .circulo {
-    position: relative;
-    left: 72.6rem;
     background-color: $rojo911;
     width: 10rem;
     height: 10rem;
     border-radius: 50%;
-    top: 4.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .circulo-img {
-    position: relative;
     left: 2.5rem;
     top: 1.5rem;
     max-width: 100%;
     max-height: 100%;
 }
 
-.container {
-    position: relative;
+/*============================================================SIGNIN Y SIGNUP===================================================================*/
+/*============================================================CONTACTO===================================================================*/
+.contenedor__contacto {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 120rem;
+    margin: 0 auto;
+    font-family: $fuentePrincipal;
+
+}
+
+.contacto__contacto {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+    text-align: center;
+    column-gap: 2rem;
+    align-items: center;
+    justify-items: center;
+
+}
+
+.encabezado__contacto {
+    color: $blanco;
+    text-align: center;
+
+}
+
+.texto__contacto {
+    color: $blanco;
+    font-family: $fuentePrincipal;
+    font-size: 1.5rem;
+    text-align: justify;
+    margin-top: .5rem;
+}
+
+.redes-sociales__contacto {
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.redes-sociales__contacto img {
+    margin-right: 1rem;
+    /* Espacio entre la imagen y el texto */
+    width: 2rem;
+}
+
+.a__contacto {
+    text-decoration: none;
+    color: $blanco;
+}
+
+
+.FB {
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.footer__contacto {
+    position: absolute;
     width: 100%;
+    font-family: $fuentePrincipal;
+    color: $blanco;
+    font-size: 1rem;
+    text-align: center;
+    bottom: 0;
+}
+
+
+@media screen and (max-width: 1044px) {
+    .contenedor__contacto {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 80rem;
+        margin: 0 auto;
+        font-family: $fuentePrincipal;
+
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+    .contenedor__contacto {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 40rem;
+        margin: 0 auto;
+        font-family: $fuentePrincipal;
+        padding-left: 3rem;
+        padding-right: 3rem;
+
+    }
+
+    .contacto__contacto {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 2rem;
+        text-align: center;
+        column-gap: 2rem;
+        align-items: center;
+        justify-items: center;
+
+    }
+}
+
+/*============================================================SERVICIOS===================================================================*/
+.encabezado__servicios {
+    color: $blanco;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+@media screen and (max-width: 1280px) {
+    .encabezado__servicios {
+        font-size: 5rem;
+        margin-bottom: 2rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .encabezado__servicios {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+}
+
+
+.texto__servicios {
+    padding-top: .5rem;
+    color: $blanco;
+    text-align: center;
     margin-bottom: 2rem;
 }
-/*============================================================SIGNIN Y SIGNUP===================================================================*/
+
+.grid__servicios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: auto 12.5rem;
+    align-items: center;
+    text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+    .grid__servicios {
+        grid-template-columns: repeat(2, 1fr);
+        //grid-template-rows: repeat(3, 1fr);
+        //margin: auto;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .grid__servicios {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        margin: auto;
+    }
+}
+
+.item__servicios {
+    align-content: center;
+    text-align: center;
+
+}
+
+@media screen and (max-width: 1280px) {
+    .item__servicios {
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .item__servicios {
+        padding: 2rem;
+    }
+}
+
+.item__servicios--img {
+    width: 35rem;
+    border-radius: 2rem;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 1280px) {
+    .item__servicios--img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .item__servicios--img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.item__servicios--texto {
+    color: $blanco;
+    font-family: $fuentePrincipal;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 1280px) {
+    .item__servicios--texto {
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .item__servicios--texto {
+        padding: 1rem;
+    }
+}
+
+.contenedor__servicios {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1280px) {
+    .contenedor__servicios {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .contenedor__servicios {
+        display: block;
+    }
+}
+
+
+.img__servicios {
+    width: 60rem;
+}
+
+@media screen and (max-width: 1280px) {
+    .img__servicios {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .img__servicios {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.texto__todos--servicios {
+    color: $blanco;
+    font-family: $fuentePrincipal;
+    font-size: 1.5rem;
+    margin: auto 0;
+}
+
+@media screen and (max-width: 1280px) {
+    .texto__todos--servicios {
+        margin: 4rem;
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .texto__todos--servicios {
+        margin: 2rem;
+        font-size: 2rem;
+    }
+}
+
+/*============================================================DASHBOARD CLIENTE===================================================================*/
+
+.dashboard-cliente {
+    color: white;
+    margin: auto;
+}
+
+.dashboard-cliente__titulo {
+    margin: 25px 0 0 25px;
+    font-size: 28px;
+}
+
+.dashboard-cliente__tarjeta-vehiculo {
+    background-color: rgba($color: #ffffff, $alpha: 0.2);
+    margin: 25px;
+    border-radius: 30px;
+    border: 1px solid #FFF;
+    min-height: 200px;
+    padding: 15px;
+    margin-bottom: 40px;
+}
+
+.dashboard-cliente__tarjeta-vehiculo .titulo {
+    font-size: 26px;
+    text-align: center;
+    margin: 20px;
+}
+
+.dashboard-cliente__tarjeta-vehiculo .atributos {
+    font-size: 18px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.dashboard-cliente__boton {
+    display: block;
+    margin: 30px auto;
+    text-align: center;
+    width: 200px;
+    height: 50px;
+    font-size: 22px;
+    border-radius: 10px;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.7);
+    
+}

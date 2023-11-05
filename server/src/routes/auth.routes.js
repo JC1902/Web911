@@ -7,7 +7,8 @@ del usuario. */
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const cuentasController = require('../controllers/cuentas.controller');
+// const cuentasController = require('../controllers/cuentas.controller');
+const authController = require('../controllers/auth.controller');
 
 // ---- ROUTES -----
 router.get('/auth/signin', (req, res, next) => {
@@ -36,7 +37,7 @@ router.use((req, res, next) => {
 // ---- ROUTES -----
 router.get('/auth', async (req, res/*, next*/) => {
     
-    let resolution = await cuentasController.isAdmin(req, res);
+    let resolution = await authController.isAdmin(req, res);
 
     if( resolution ) { 
         res.render('adminDashboard');
@@ -49,6 +50,10 @@ router.get('/auth', async (req, res/*, next*/) => {
 
 // -------- MIDDLEWARES ------------
 function isAuthenticated(req, res, next) {
+
+    let auth = req.isAuthenticated();
+    console.log("Authentication: ", auth);
+
     if(!req.isAuthenticated()) {
         res.redirect('/'); 
         return;
