@@ -7,7 +7,8 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const cuentasController = require('../controllers/cuentas.controller');
+// const cuentasController = require('../controllers/cuentas.controller');
+const authController = require('../controllers/auth.controller');
 
 // Control de la serialización del usuario
 // se guarda en archivos del navegador
@@ -39,10 +40,14 @@ passport.use('local-signin', new LocalStrategy(
     
     async (req, folio, password, done)=> {
 
+		// console.log('Request Body: ', req.body);
 	    console.log("Folio: ", folio);
 	    console.log("Password: ", password);
 
-	    const cuenta = await cuentasController.getCuentaPorFolio(folio);
+	    // const cuenta = await cuentasController.getCuentaPorFolio(req, res);
+		// console.log('Resultado devuelto por la función: ', cuenta);
+
+		const cuenta = await authController.getCuentaPorFolio(folio);
 
         // Compara si existe el usuario
         if(cuenta == null){
@@ -50,7 +55,7 @@ passport.use('local-signin', new LocalStrategy(
         }
 
         // Comparación de contraseñas
-        const correctPassword = await cuentasController.comparePassword(folio, password);
+        const correctPassword = await authController.comparePassword(folio, password);
 
         if(!correctPassword){
             return done(null, false, req.flash('signinMessage','Contraseña incorrecta'));

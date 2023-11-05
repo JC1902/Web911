@@ -14,6 +14,7 @@ const passport = require('passport'); // importación de passport.
 const cuentasController = require('../controllers/cuentas.controller');
 const clientesController = require('../controllers/clientes.controller');
 const vehiculosController = require('../controllers/vehiculos.controller');
+const authController = require('../controllers/auth.controller');
 
 
 // ---- MIDDLEWARE ----
@@ -22,7 +23,7 @@ router.use( async (req, res, next) => {
         return res.redirect('/'); 
     }
 
-    if (!await cuentasController.isAdmin(req)) {
+    if (!await authController.isAdmin(req)) {
         return res.status(403).json({ mensaje: "No tienes permiso para acceder a este recurso" });
     }
 
