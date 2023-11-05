@@ -5,9 +5,15 @@ const morgan = require('morgan');
 const passport = require('passport');
 const session = require('express-session'); 
 const flash = require('connect-flash');
+const bodyParser = require('body-parser');
+
 
 // initializations
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 require('./database');
 require('./passport/local.auth');
 
@@ -42,7 +48,12 @@ app.use( express.static(path.join(__dirname, '../../public') ) );
 const indexRoutes = require('./routes/index.routes');
 const { authRoutes } = require('./routes/auth.routes');
 const mailRoutes = require('./routes/correo.routes');
-const crudRoutes = require('./routes/crud.routes.js')
+const crudRoutes = require('./routes/crud.routes')
+
+app.use((req, res, next) => {
+    console.log('Request URL:', req.url);
+    next();
+});
 
 app.use(indexRoutes);
 app.use(authRoutes);
