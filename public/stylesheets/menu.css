@@ -24,7 +24,7 @@
   justify-content: space-between;
 }
 @media screen and (max-width: 480px) {
-  .logo:nth-child(2) {
+  .logo a:nth-child(2) {
     display: none;
   }
 }
