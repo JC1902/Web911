@@ -1,18 +1,72 @@
-<body>
-    <h1>Client Dashboard</h1>
-   
-    <!-- Boton de logout -->
-    <button id="logoutButton">Logout</button>
+<%- layout('layouts/main.ejs') %>
+
+  <body>
+    <div class="dashboard-cliente">
+      <h1 class="dashboard-cliente__titulo">Servicios de :</h1>
+
+      <div id="dashboard-cliente__vehiculos">
+
+      </div>
+
+      <!-- Boton de logout -->
+      <button id="logoutButton" class="dashboard-cliente__boton">Cerrar Sesión</button>
+    </div>
 
     <!-- Importacion del JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+
     <script>
+
+      const prueba = {
+        'vehiculo1': {
+          vehiculo: 'Camioneta 1',
+          estatus: 'En pintura',
+          fecha_ingreso: '01/11/2023',
+          pase_admision: '123456'
+        },
+        'vehiculo2': {
+          vehiculo: 'Camioneta 2',
+          estatus: 'En pintura',
+          fecha_ingreso: '01/11/2023',
+          pase_admision: '123456'
+        },
+        'vehiculo3': {
+          vehiculo: 'Camioneta 3',
+          estatus: 'En pintura',
+          fecha_ingreso: '01/11/2023',
+          pase_admision: '123456'
+        }
+      };
+
+      // Función para generar elementos HTML basados en los datos de 'prueba'
+      function generarElementosHTML(datos) {
+        const contenedor = $('#dashboard-cliente__vehiculos');
+        for (const vehiculo in datos) {
+          if (datos.hasOwnProperty(vehiculo)) {
+            const info = datos[vehiculo];
+            const elementoHTML = `
+          <div class="dashboard-cliente__tarjeta-vehiculo">
+            <h2 class='titulo'>Datos del vehículo</h2>
+            <p class='atributos'><strong>Vehículo:</strong> ${info.vehiculo}</p>
+            <p class='atributos'><strong>Estatus:</strong> ${info.estatus}</p>
+            <p class='atributos'><strong>Fecha de Ingreso:</strong> ${info.fecha_ingreso}</p>
+            <p class='atributos'><strong>Pase de Admisión:</strong> ${info.pase_admision}</p>
+          </div>
+        `;
+            contenedor.append(elementoHTML);
+          }
+        }
+      }
+
+      // Llama a la función para generar los elementos HTML
+      generarElementosHTML(prueba);
+
+
       // Manejador del evento de click en el boton
-      $(document).ready(function() {
-        $('#logoutButton').click(function() {
+      $(document).ready(function () {
+        $('#logoutButton').click(function () {
           // Envia una peticion GET al servidor para finalizar la sesion
-          $.get('/auth/logout', function(data) {
+          $.get('/auth/logout', function (data) {
             // Maneja la respuesta entregada por el servidor
             console.log(data); // Despliega los mensajes del servidor.
             // Se redirecciona al usuario a la ruta / de la pagina
