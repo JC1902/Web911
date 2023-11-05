@@ -1,6 +1,4 @@
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: inherit;
 }
 
@@ -368,8 +366,7 @@
 }
 
 .redes-sociales__contacto img {
-  margin-right: 1rem;
-  /* Espacio entre la imagen y el texto */
+  margin-right: 1rem; /* Espacio entre la imagen y el texto */
   width: 2rem;
 }
 
@@ -572,51 +569,8 @@
     font-size: 2rem;
   }
 }
-/*============================================================DASHBOARD CLIENTE===================================================================*/
 .dashboard-cliente {
   color: white;
-  margin: auto;
 }
 
-.dashboard-cliente__titulo {
-  margin: 25px 0 0 25px;
-  font-size: 28px;
-}
-
-.dashboard-cliente__tarjeta-vehiculo {
-  background-color: rgba(255, 255, 255, 0.2);
-  margin: 25px;
-  border-radius: 30px;
-  border: 1px solid #FFF;
-  min-height: 200px;
-  padding: 15px;
-  margin-bottom: 40px;
-}
-
-.dashboard-cliente__tarjeta-vehiculo .titulo {
-  font-size: 26px;
-  text-align: center;
-  margin: 20px;
-}
-
-.dashboard-cliente__tarjeta-vehiculo .atributos {
-  font-size: 18px;
-  margin-left: 20px;
-  margin-bottom: 20px;
-}
-
-.dashboard-cliente__boton {
-  display: block;
-  margin: 30px auto;
-  text-align: center;
-  width: 200px;
-  height: 50px;
-  font-size: 22px;
-  border-radius: 10px;
-  border: none;
-  margin-left: auto;
-  margin-right: auto;
-  background: rgba(255, 255, 255, 0.7);
-}
-
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=stylesheet.css.map */

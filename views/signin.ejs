@@ -1,22 +1,24 @@
 <%- layout('layouts/main.ejs') %>
-<br>
-<div class="circulo">
-    <img src="/img/911.png" class="circulo-img">
-</div>
-<br>
-<div class="formulario">
-    <form action="/auth/signin" method="POST">
-        <br>
-        <h1 class="texto-sesion">INICIAR SESION</h1>
-        <div class="signin">
-            <input type="password" name="password" placeholder="Contraseña" class="campos">
-            <input type="text" name="folio" placeholder="Folio" class="campos">
-        </div>
 
-        <button type="submit" class="boton-signin">
-            Sign In
-        </button>
-        <br><br>
-    </form>
-    <!-- <a class="vinculo">No tienes cuenta? </a><a href="signup" class="vinculo">Registrarse</a> -->
+<div class="display">
+    <br>
+        <div class="circulo">
+            <img src="/img/911.png" class="circulo-img">
+        </div>
+    <div class="formulario">
+        <form action="/auth/signin" method="POST">
+            <br>
+            <h1 class="texto-sesion">INICIAR SESION</h1>
+            <div class="signin">
+                <input type="password" name="password" placeholder="Contraseña" class="campos">
+                <input type="text" name="folio" placeholder="Folio" class="campos">
+            </div>
+
+            <button type="submit" class="boton-signin">
+                Sign In
+            </button>
+            <br><br>
+        </form>
+        <!-- <a class="vinculo">No tienes cuenta? </a><a href="signup" class="vinculo">Registrarse</a> -->
+    </div>
 </div>
