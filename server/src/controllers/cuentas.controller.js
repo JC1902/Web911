@@ -200,10 +200,61 @@ async function getCuentaPorFolio(req, res) {
 
 async function postCuenta(req, res) {
 
+	let connection;
+
+	try {
+		
+		const {  cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion } = req.body;
+
+		connection = await pool.getConnection();
+
+		const postCuentaQuery = 'INSERT INTO Cuentas (cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion) VALUES (?, ?, ?, ?);';
+
+		const okPacket = await connection.query( postCuentaQuery, [cta_id, cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion] );
+
+		console.log('Respuesta de POST: ', okPacket);
+
+		res.status(200).json({ mensaje: "La cuenta fue registrada con éxito" });
+
+	} catch(error) {
+
+		console.error('Error: ', error.message);
+		res.status(500).json({ mensaje: `No se pudo registrar la cuenta. Error: ${error.message}` });
+
+	} finally {
+		if (connection) connection.release();
+	}
 }
 
 async function updateCuentaPorID(req, res) {
 
+	let connection;
+
+	try {
+
+		const { id } = req.params;
+		const { cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion } = req.body;
+
+		if ( isNaN(id) ) {
+			throw new Error('TypeError: id must be an Int');
+		}
+
+		connection = await pool.getConnection();
+	
+		const updateCuentaQuery = 'UPDATE Cuentas SET cta_folio = ?, cta_password = ?, cta_tipoCuenta = ?, cta_fechaCreacion = ? WHERE cta_id = ?;';
+		const okPacket = await connection.query( updateCuentaQuery, [cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion, id] );
+
+		console.log('okPacket: ', okPacket);
+		res.status(200).json({ mensaje: "La información de la cuenta se actualizó con éxito" });
+		
+	} catch(error) {
+
+		console.error('Error: ', error.message);
+		res.status(500).json({mensaje: `No se pudo actualizar la información de la cuenta. Error: ${error.message}`});
+
+	} finally { 
+		if (connection) connection.release();
+	}
 }
 
 /*
@@ -218,6 +269,26 @@ async function updateCuentaPorFolio(req, res) {
 
 async function deleteCuentaPorID(req, res) {
 
+	let connection;
+
+	try {
+
+		const { id } = req.params;
+
+		connection = await pool.getConnection();
+
+		const deleteCuentaQuery = 'DELETE FROM Cuentas WHERE cta_id = ?;'; 
+		const okPacket = await connection.query( deleteCuentaQuery, [id] );
+
+		console.log('okPacket: ', okPacket);
+		res.status(200).json({ mensaje: "La cuenta fue eliminada con éxito" });
+
+	} catch (error) {
+		console.error('Error: ', error.message);
+		res.status(500).json({ mensaje: `No se pudo eliminar la cuenta. Error: ${error.message}` });
+	} finally {
+		if (connection) connection.release();
+	}
 }
 
 /*
@@ -233,7 +304,7 @@ async function deleteCuentaPorNumSiniestro(req, res) {
 
 // ----- MÉTODOS USADOS PARA AUTENTICACIÓN -----
 
-async function getTipoCuentaPorID(id) {
+/* async function getTipoCuentaPorID(id) {
     try{
         const connection = await pool.getConnection();
         const [tipoCuenta] = await connection.query('SELECT cta_tipoCuenta FROM Cuentas WHERE cta_id = ?', id);
@@ -242,7 +313,7 @@ async function getTipoCuentaPorID(id) {
     }catch(error) {
         console.log(error);
     }
-}
+} */
 
 
 module.exports = {
@@ -250,7 +321,7 @@ module.exports = {
     getCuentaPorID,
     // getCuentaPorNumSiniestro,
     getCuentaPorFolio,
-    getTipoCuentaPorID,
+    // getTipoCuentaPorID,
     postCuenta,
     updateCuentaPorID,
     // updateCuentaPorNumSiniestro,
