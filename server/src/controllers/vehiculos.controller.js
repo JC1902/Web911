@@ -25,18 +25,17 @@ async function getVehiculos(req, res) {
 }
 
 async function getVehiculoPorID(req, res) {
-    
-    console.log("REQUEST ID", req.params);
-
-    const {id} = req.params;
-
-    if( isNaN(id) ){
-        throw new Error('TypeErrorID');
-    }
 
     let connection;
 
     try {
+
+		const {id} = req.params;
+
+		if( isNaN(id) ){
+			throw new Error('TypeErrorID');
+		}
+
         connection = await pool.getConnection();
 
         const getVehiculoQuery = 'SELECT veh_folioInterno, veh_numPaseAdmision, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_numeroSiniestro, cta_folio FROM Vehiculos WHERE veh_id = ?';
@@ -57,18 +56,16 @@ async function getVehiculoPorID(req, res) {
 
 
 async function getVehiculoPorFolioInterno(req, res) {
-
-    console.log("REQUEST FOLIO", req.params);
-
-    const {folio} = req.params;
-
-    if(isNaN(folio)) {
-        throw new Error('TypeErrorFolio');
-    }
-
     let connection;
 
     try{
+
+		const {folio} = req.params;
+
+		if(isNaN(folio)) {
+			throw new Error('TypeErrorFolio');
+		}
+
         connection = await pool.getConnection();
 
         const getVehiculoQuery = 'SELECT veh_id, veh_numPaseAdmision, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_numeroSiniestro FROM Vehiculos WHERE veh_folioInterno = ?';
@@ -93,13 +90,11 @@ async function getVehiculoPorFolioInterno(req, res) {
 
 async function postVehiculo(req, res) {
 
-    console.log("RESQUEST POST VEHICULO ", req.body);
-
-    const {veh_folioInterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_estatusReparacion, cta_id, cte_id, cta_folio} = req.body;
-
     let connection;
 
-    try{
+    try {
+
+		const {veh_folioInterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_estatusReparacion, cta_id, cte_id, cta_folio} = req.body;
 
         connection = await pool.getConnection();
 
@@ -123,19 +118,18 @@ async function postVehiculo(req, res) {
 
 async function updateVehiculoPorID(req, res) {
 
-    console.log("REQUEST updateID:", req.params);
-
-    const {id} = req.params;
-    const {veh_folioInterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_folio} = req.body;
-    // const estatusAnterior = req.body.veh_estatusReparacion;
-
-    if( isNaN(id) ) {
-        throw new Error('TypeErrorID');
-    }
-
     let connection;
 
     try {
+
+		const {id} = req.params;
+		const {veh_folioInterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_folio} = req.body;
+		// const estatusAnterior = req.body.veh_estatusReparacion;
+
+		if( isNaN(id) ) {
+			throw new Error('TypeErrorID');
+		}
+
         connection = await pool.getConnection();
 
         const updateVehiculoQuery = 'UPDATE Vehiculos SET veh_folioInterno = ?, veh_numPaseAdmision = ?, veh_numeroSiniestro = ?, veh_tipoVehiculo = ?, veh_fechaIngreso = ?, veh_fechaEgreso = ?, veh_estatusReparacion = ?, cta_id = ?, cte_id = ?, cta_folio = ? WHERE veh_id = ?';
@@ -145,7 +139,14 @@ async function updateVehiculoPorID(req, res) {
 
         if( okPacket.affectedRows >= 1 ) {
 
-            await mailer.sendUpdateEmail(addresseeEmail, nombreCliente, veh_tipoVehiculo, veh_estatusReparacion);
+			const getAdresseDataQuery = 'SELECT cte_nombres, cte_correo FROM Clientes WHERE cte_id = ?;';
+			// const adresseData = await connection.query( getAdresseDataQuery, [cte_id] );
+
+            // console.log('Adresse Data: ', adresseData);
+
+            const [{ cte_correo, cte_nombres }] = await connection.query( getAdresseDataQuery, [cte_id] );
+
+            await mailer.sendUpdateEmail(cte_correo, cte_nombres, veh_tipoVehiculo, veh_estatusReparacion);
 
         }
 
@@ -166,17 +167,17 @@ async function updateVehiculoPorID(req, res) {
 //}
 
 async function deleteVehiculoPorID(req, res) {
-    console.log("REQUEST deleteVehiculoID: ", req.params);
-
-    const {id} = req.params;
-
-    if ( isNaN (id) ) {
-        throw new Error ('TypeErrorID');
-    }
 
     let connection;
 
     try {
+
+		const {id} = req.params;
+
+		if ( isNaN (id) ) {
+			throw new Error ('TypeErrorID');
+		}
+
         connection = await pool.getConnection();
 
         const deleteVehiculoQuery = 'DELETE FROM Vehiculos WHERE veh_id = ?';
