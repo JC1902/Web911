@@ -1,10 +1,3 @@
-/*
-    Modulo el cual exporta las
-    credenciales necesarias para
-    el envio de correos.
-
-*/
-
 require('dotenv').config();
 
 const mailConfig = {

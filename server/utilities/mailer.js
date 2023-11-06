@@ -1,7 +1,7 @@
 const nodeMailer = require('nodemailer');
 const mailConfig = require('../src/config/mailer.config');
 
-const subject = `<h3>Actualización del estado de reparación de su vehiculo</h3>`;
+const subject = 'Actualización del estado de reparación de su vehiculo';
 
 const transporter = nodeMailer.createTransport({
     host: mailConfig.host,
@@ -17,12 +17,13 @@ async function sendUpdateEmail(addresseeEmail, nombreCliente, vehiculo, estatusR
 
     const basicTemplate = `
                             Hola, Señor(a): ${nombreCliente}.
+                            <br> <br>
                             Esperamos que se encuentre bien.
-
-                            Le informamos que su vehiculo <b>${vehiculo}</b> ha pasado al proceso
-                            de <b>${estatusReparacion}</b>. Le informarémos cuando su vehiculo se encuentre listo.
+                            <br> <br>
+                            Le informamos que su vehiculo <b>${vehiculo}</b> ha pasado al proceso de <b>${estatusReparacion}</b>.
+                            <br> <br>
+                            Le informarémos cuando su vehiculo se encuentre listo.
                         `;
-
 
     try {
 
@@ -34,7 +35,6 @@ async function sendUpdateEmail(addresseeEmail, nombreCliente, vehiculo, estatusR
             html: basicTemplate,
         });
     
-        console.log('Información email: ', mailInfo.messageId);
         console.log('Emails enviados: ', mailInfo.accepted);
         console.log('Emails no alcanzados: ', mailInfo.rejected);
 
@@ -44,4 +44,4 @@ async function sendUpdateEmail(addresseeEmail, nombreCliente, vehiculo, estatusR
     }
 }
 
-module.exports = sendUpdateEmail;
+module.exports = { sendUpdateEmail };
