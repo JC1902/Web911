@@ -38,7 +38,7 @@ async function getVehiculoPorID(req, res) {
 
         connection = await pool.getConnection();
 
-        const getVehiculoQuery = 'SELECT veh_folioInterno, veh_numPaseAdmision, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_numeroSiniestro, cta_folio FROM Vehiculos WHERE veh_id = ?';
+        const getVehiculoQuery = 'SELECT veh_folioInterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso,veh_estatusReparacion, cta_id, cte_id, cta_folio FROM Vehiculos WHERE veh_id = ?';
 
         const [vehiculo] = await connection.query(getVehiculoQuery, [id]);
         console.log(vehiculo);
@@ -124,26 +124,25 @@ async function updateVehiculoPorID(req, res) {
 
 		const {id} = req.params;
 		const {veh_folioInterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_folio} = req.body;
-		// const estatusAnterior = req.body.veh_estatusReparacion;
 
 		if( isNaN(id) ) {
 			throw new Error('TypeErrorID');
 		}
+
+        const estatusPrevioReparacion = await getEstatusReparacion(id);
+        console.log('Estatus Previo Reparacion: ', estatusPrevioReparacion);
 
         connection = await pool.getConnection();
 
         const updateVehiculoQuery = 'UPDATE Vehiculos SET veh_folioInterno = ?, veh_numPaseAdmision = ?, veh_numeroSiniestro = ?, veh_tipoVehiculo = ?, veh_fechaIngreso = ?, veh_fechaEgreso = ?, veh_estatusReparacion = ?, cta_id = ?, cte_id = ?, cta_folio = ? WHERE veh_id = ?';
 
         const okPacket = await connection.query(updateVehiculoQuery, [veh_folioInterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_folio, id] );
-        console.log(okPacket);
 
-        if( okPacket.affectedRows >= 1 ) {
+        console.log('okPacket: ', okPacket);
+
+        if( okPacket.affectedRows >= 1 &&  estatusPrevioReparacion.veh_estatusReparacion !== veh_estatusReparacion) {
 
 			const getAdresseDataQuery = 'SELECT cte_nombres, cte_correo FROM Clientes WHERE cte_id = ?;';
-			// const adresseData = await connection.query( getAdresseDataQuery, [cte_id] );
-
-            // console.log('Adresse Data: ', adresseData);
-
             const [{ cte_correo, cte_nombres }] = await connection.query( getAdresseDataQuery, [cte_id] );
 
             await mailer.sendUpdateEmail(cte_correo, cte_nombres, veh_tipoVehiculo, veh_estatusReparacion);
@@ -154,7 +153,7 @@ async function updateVehiculoPorID(req, res) {
 
     } catch (error) {
 
-        console.error(error.message);
+        console.error('Erorr: ', error.message);
         res.status(500).json({ mensaje: `Error: ${error.message}` });
         
     } finally {
@@ -203,6 +202,27 @@ async function deleteVehiculoPorID(req, res) {
 
 // }
 
+// ---- MÉTODOS AUXILIARES -----
+
+async function getEstatusReparacion(id) {
+
+    let connection;
+
+    try { 
+        connection = await pool.getConnection();
+
+        const getEstatusReparacionQuery = 'SELECT veh_estatusReparacion FROM Vehiculos WHERE veh_id = ?';
+        const [estatusReparacion] = await connection.query(getEstatusReparacionQuery, [id]);
+
+        return estatusReparacion;
+
+    } catch (error) {
+        console.error('Error: ', error.message);
+        return; 
+    } finally { 
+        if (connection) connection.release();
+    }
+}
 
 module.exports = {
     getVehiculos,
