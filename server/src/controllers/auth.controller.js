@@ -43,8 +43,6 @@ async function comparePassword(folio, password) {
     } catch (error) {
         console.error('Error: ', error.message);
         return;
-    } finally {
-        if (connection) connection.release();
     }
 }
 
@@ -63,7 +61,6 @@ async function isAdmin(req, res) {
         return false;
     }
 }
-
 
 module.exports = { 
 	getCuentaPorFolio,
