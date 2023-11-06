@@ -1,4 +1,5 @@
 const pool = require('../database'); 
+const { encrypt } = require('../../utilities/encryption');
 
 async function getCuentas(req, res) {
 	
@@ -8,8 +9,7 @@ async function getCuentas(req, res) {
 
 		connection = await pool.getConnection();
 
-		const [cuentas] = await connection.query('SELECT * FROM Cuentas;');
-		console.log(cuentas);
+		const cuentas = await connection.query('SELECT cta_id, cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion FROM Cuentas;');
 		res.status(200).json(cuentas);
 
 	} catch(error) {
@@ -40,7 +40,7 @@ async function getCuentaPorID(req, res) {
 
 		connection = await pool.getConnection();
 
-		const getCuentaQuery = 'SELECT cta_id, cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion FROM Cuentas WHERE cta_id = ?;';
+		const getCuentaQuery = 'SELECT cta_id, cta_folio, cta_tipoCuenta, cta_fechaCreacion FROM Cuentas WHERE cta_id = ?;';
 		const [cuenta] = await connection.query( getCuentaQuery, [id] );
 
 		res.status(200).json( cuenta );
@@ -99,10 +99,12 @@ async function postCuenta(req, res) {
 		
 		const { cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion } = req.body;
 
-		connection = await pool.getConnection();
+		let password = cta_password;
+		password = await encrypt(cta_password);
 
+		connection = await pool.getConnection();		
 		const postCuentaQuery = 'INSERT INTO Cuentas (cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion) VALUES (?, ?, ?, ?);';
-		await connection.query( postCuentaQuery, [cta_id, cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion] );
+		await connection.query( postCuentaQuery, [cta_folio, password, cta_tipoCuenta, cta_fechaCreacion] );
 
 		res.status(200).json({ mensaje: "La cuenta fue registrada con éxito" });
 
@@ -132,10 +134,12 @@ async function updateCuentaPorID(req, res) {
 			throw new Error('TypeError: id must be an Int');
 		}
 
+		let password = cta_password;
+		password = await encrypt(cta_password);
+
 		connection = await pool.getConnection();
-	
 		const updateCuentaQuery = 'UPDATE Cuentas SET cta_folio = ?, cta_password = ?, cta_tipoCuenta = ?, cta_fechaCreacion = ? WHERE cta_id = ?;';
-		await connection.query( updateCuentaQuery, [cta_folio, cta_password, cta_tipoCuenta, cta_fechaCreacion, id] );
+		await connection.query( updateCuentaQuery, [cta_folio, password, cta_tipoCuenta, cta_fechaCreacion, id] );
 
 		res.status(200).json({ mensaje: "La información de la cuenta se actualizó con éxito" });
 		

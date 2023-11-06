@@ -6,7 +6,7 @@ async function getClientes(req, res) {
 
     try{
         connection = await pool.getConnection();
-        const [clientes] = await connection.query("SELECT * FROM Clientes;");
+        const clientes = await connection.query("SELECT * FROM Clientes;");
         res.status(200).json(clientes);
         
     } catch(error) {
@@ -35,7 +35,7 @@ async function getClientePorID(req, res) {
         }
 
         connection = await pool.getConnection();
-	const getClienteQuery = 'SELECT cte_apPaterno, cte_apMaterno, cte_nombres, cte_sexo, cte_correo, cte_codigoPostal, cte_calle, cte_colonia, cte_municipio, cte_estado, cte_telefono, cta_id, cta_folio FROM Clientes WHERE cte_id = ?;'
+	    const getClienteQuery = 'SELECT cte_apPaterno, cte_apMaterno, cte_nombres, cte_sexo, cte_correo, cte_codigoPostal, cte_calle, cte_colonia, cte_municipio, cte_estado, cte_telefono, cta_id, cta_folio FROM Clientes WHERE cte_id = ?;'
         
         const [cliente] = await connection.query( getClienteQuery, [id] );
 

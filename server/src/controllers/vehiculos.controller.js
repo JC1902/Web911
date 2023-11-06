@@ -6,7 +6,7 @@ async function getVehiculos(req, res) {
 
     try {
         connection = await pool.getConnection();
-        const [vehiculos] = await connection.query('SELECT * FROM Vehiculos;');
+        const vehiculos = await connection.query('SELECT * FROM Vehiculos;');
         res.status(200).json(vehiculos);
 
     } catch (error) {
@@ -70,7 +70,7 @@ async function getVehiculoPorFolioInterno(req, res) {
 
         connection = await pool.getConnection();
 
-        const getVehiculoQuery = 'SELECT veh_id, veh_numPaseAdmision, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_numeroSiniestro FROM Vehiculos WHERE veh_folioInterno = ?';
+        const getVehiculoQuery = 'SELECT veh_id, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_folio FROM Vehiculos WHERE veh_folioInterno = ?';
 
         const [vehiculo] = await connection.query(getVehiculoQuery, [folio]);
 

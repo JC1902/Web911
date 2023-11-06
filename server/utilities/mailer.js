@@ -35,7 +35,6 @@ async function sendUpdateEmail(addresseeEmail, nombreCliente, vehiculo, estatusR
             html: basicTemplate,
         });
     
-        console.log('Información email: ', mailInfo.messageId);
         console.log('Emails enviados: ', mailInfo.accepted);
         console.log('Emails no alcanzados: ', mailInfo.rejected);
 
