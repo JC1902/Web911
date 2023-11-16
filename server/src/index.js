@@ -8,7 +8,6 @@ const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 
 
-// initializations
 const app = express();
 
 app.use(bodyParser.json());
@@ -17,13 +16,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 require('./database');
 require('./passport/local.auth');
 
-// settings
+
 app.set('views', path.join(__dirname, '../../views'));
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
 
-// middlewares
+
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: true}));
 app.use(session({
@@ -41,13 +40,12 @@ app.use((req, res, next) => {
     next();
 });
 
-// Acceso y uso de nuestros assets en la carpeta public
+
 app.use( express.static(path.join(__dirname, '../../public') ) );
 
-// routes
+
 const indexRoutes = require('./routes/index.routes');
 const { authRoutes } = require('./routes/auth.routes');
-const mailRoutes = require('./routes/correo.routes');
 const crudRoutes = require('./routes/crud.routes')
 
 app.use((req, res, next) => {
@@ -58,9 +56,7 @@ app.use((req, res, next) => {
 app.use(indexRoutes);
 app.use(authRoutes);
 app.use(crudRoutes);
-app.use(mailRoutes);
 
-// líneas de arranque del servidor
 app.listen( app.get('port'), () => {
     console.log('Server running on port', app.get('port') );
 } );

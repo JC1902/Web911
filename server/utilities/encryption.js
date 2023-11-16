@@ -1,6 +1,3 @@
-// Módulo para la encriptación de la
-// contraseña de nuestros usuarios.
-
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
