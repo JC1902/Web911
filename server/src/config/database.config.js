@@ -1,9 +1,3 @@
-/*  
-    Módulo de configuración de las credenciales
-    para la conexión a la base de datos.
-    Credenciales obtenidas del archivo .env
-*/
-
 require('dotenv').config();
 
 const databaseConfig = {
