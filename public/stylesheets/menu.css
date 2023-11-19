@@ -66,7 +66,7 @@
 }
 .menu_items-a:hover {
   color: #000;
-text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 @media screen and (max-width: 952px) {

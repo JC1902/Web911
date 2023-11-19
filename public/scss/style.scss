@@ -717,3 +717,71 @@ $banner: #ebf707;
     background: rgba(255, 255, 255, 0.7);
     
 }
+
+/*============================================================DASHBOARD ADMIN===================================================================*/
+
+.dashboard-admin {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.dashboard-admin .dashboard-admin__titulo {
+    font-size: 28px;
+}
+
+.dashboard-admin .boton-agregar {
+    margin: 10px 0;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, $amarillo911 41%, rgba(247,206,7,1) 62%);
+    height: 100%;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.dashboard-admin .boton-agregar:hover {
+    transform: scale(1.02);
+}
+
+.admin-tabla {
+    max-width: 100%;
+    padding: 0 20px;
+    font-size: 12px;
+}
+
+.btn-accion {
+    width: 60px !important;
+    margin-bottom: 5px !important;
+}
+
+.btn-logout {
+    display: flex;
+    margin: 0 auto;
+    background-color: #fff;
+    border: none;
+    border-radius: 30px;
+    width: 150px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.btn-logout:hover {
+    background-color: #d12926;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    
+    .dashboard-admin {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
