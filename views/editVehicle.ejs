@@ -1,20 +1,57 @@
 <%- layout('layouts/main.ejs') %>
 
-<body>
-    <h1>Admin Dashboard</h1>
-   
+  <body>
+    <div class="editar-vehiculo">
+      <h1 class="dashboard-admin__titulo">Datos</h1>
+    </div>
+
+    <div class="editar-vehiculo__formulario">
+      <h2 class="titulo">Actualización del vehículo</h2>
+      <div>
+        <div class="rows">
+          <label for="" class="labels">Folio interno:</label>
+          <input class="inputs" />
+        </div>
+        <div class="rows">
+          <label for="" class="labels">Vehiculo:</label>
+          <input class="inputs" />
+        </div>
+        <div class="rows">
+          <label for="" class="labels">Número de pase de admisión:</label>
+          <input class="inputs" />
+        </div>
+        <div class="rows">
+          <label for="" class="labels">Número siniestro:</label>
+          <input class="inputs" />
+        </div>
+        <div class="rows">
+          <label for="" class="labels">Fecha de ingreso:</label>
+          <input class="inputs" type="date" />
+        </div>
+        <div class="rows">
+          <label for="" class="labels">Fecha de egreso:</label>
+          <input class="inputs" type="date" />
+        </div>
+        <div class="rows">
+          <label for="" class="labels">Estatus:</label>
+          <input class="inputs" />
+        </div>
+        <button onclick="guardar()" class="boton-agregar">Guardar cambios</button>
+      </div>
+    </div>
+
     <!-- Boton de logout -->
-    <button id="logoutButton">Logout</button>
+    <button id="logoutButton" class="btn-logout">Cerrar Sesión</button>
 
     <!-- Importacion del JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+
     <script>
       // Manejador del evento de click en el boton
-      $(document).ready(function() {
-        $('#logoutButton').click(function() {
+      $(document).ready(function () {
+        $('#logoutButton').click(function () {
           // Envia una peticion GET al servidor para finalizar la sesion
-          $.get('/auth/logout', function(data) {
+          $.get('/auth/logout', function (data) {
             // Maneja la respuesta entregada por el servidor
             console.log(data); // Despliega los mensajes del servidor.
             // Se redirecciona al usuario a la ruta / de la pagina
@@ -22,5 +59,34 @@
           });
         });
       });
+
+      $(document).ready(function () {
+
+        const folio = localStorage.getItem('vehicle_folio');
+        // Llamada al backend para obtener los datos y llenar los inputs
+        $.get(`/api/vehicles/info/${folio}/folio`, function (data) {
+
+          console.log(data);
+          // Asigna los datos a los inputs
+          $('.editar-vehiculo__formulario .rows:nth-child(1) input').val(folio);
+          $('.editar-vehiculo__formulario .rows:nth-child(2) input').val(data.veh_tipoVehiculo);
+          $('.editar-vehiculo__formulario .rows:nth-child(3) input').val(data.veh_numeroSiniestro);
+          $('.editar-vehiculo__formulario .rows:nth-child(4) input').val(data.veh_numeroSiniestro);
+          $('.editar-vehiculo__formulario .rows:nth-child(5) input').val(data.veh_fechaIngreso);
+          $('.editar-vehiculo__formulario .rows:nth-child(6) input').val(data.veh_fechaEgreso === null ? '' : data.veh_fechaEgreso);
+          $('.editar-vehiculo__formulario .rows:nth-child(7) input').val(data.veh_estatusReparacion);
+          // $('.editar-vehiculo__formulario .rows:nth-child(2) input').val(data.numPaseAdmision);
+          // Asigna otros datos a los demás inputs de manera similar
+
+          // Almacena los datos en variables para enviar al guardar
+          const nuevoFolioInterno = data.folioInterno; // Ejemplo
+          const nuevoNumPaseAdmision = data.numPaseAdmision; // Ejemplo
+        });
+      });
+
+
+      function guardar() {
+
+      }
     </script>
   </body>
