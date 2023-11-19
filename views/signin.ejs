@@ -1,24 +1,32 @@
 <%- layout('layouts/main.ejs') %>
 
-<div class="display">
+  <div class="display">
     <br>
-        <div class="circulo">
-            <img src="/img/911.png" class="circulo-img">
-        </div>
-    <div class="formulario">
-        <form action="/auth/signin" method="POST">
-            <br>
-            <h1 class="texto-sesion">INICIAR SESION</h1>
-            <div class="signin">
-                <input tabindex="2" type="password" name="password" placeholder="Contraseña" class="campos">
-                <input tabindex="1" type="text" name="folio" placeholder="Folio" class="campos">
-            </div>
-
-            <button type="submit" class="boton-signin">
-                Sign In
-            </button>
-            <br><br>
-        </form>
-        <!-- <a class="vinculo">No tienes cuenta? </a><a href="signup" class="vinculo">Registrarse</a> -->
+    <div class="circulo">
+      <img src="/img/911.png" class="circulo-img">
     </div>
-</div>
+    <div class="formulario">
+      <form action="/auth/signin" method="POST">
+        <br>
+        <h1 class="texto-sesion">INICIAR SESION</h1>
+        <div class="signin">
+          <input tabindex="2" type="password" name="password" placeholder="Contraseña" class="campos">
+          <input tabindex="1" type="text" name="folio" placeholder="Folio" class="campos" id="folioInput">
+        </div>
+
+        <button type="submit" class="boton-signin" onclick="guardarFolio()">
+          Sign In
+        </button>
+        <br><br>
+      </form>
+      <!-- <a class="vinculo">No tienes cuenta? </a><a href="signup" class="vinculo">Registrarse</a> -->
+    </div>
+
+    <script>
+      // Función para guardar el valor del input 'folio' en localStorage
+      function guardarFolio() {
+          const folioInput = document.getElementById('folioInput');
+          localStorage.setItem('folioGuardado', folioInput.value);
+      }
+  </script>
+  </div>

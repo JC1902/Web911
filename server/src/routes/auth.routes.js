@@ -36,6 +36,24 @@ router.get('/auth', async (req, res) => {
     }
 });
 
+
+router.get('/auth/createVehicle', (req, res, next) => {
+    res.render('createVehicle');
+});
+
+router.get('/auth/editVehicle', (req, res, next) => {
+    res.render('editVehicle');
+});
+
+
+router.get('/auth/createVehicle', (req, res, next) => {
+    res.render('createVehicle');
+});
+
+router.get('/auth/editVehicle', (req, res, next) => {
+    res.render('editVehicle');
+});
+
 function isAuthenticated(req, res, next) {
 
     if(!req.isAuthenticated()) {

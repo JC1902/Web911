@@ -35,6 +35,11 @@
   text-decoration: none;
 }
 
+.logo_a:hover {
+  text-decoration: none !important;
+  color: #fff !important;
+}
+
 .menu_items {
   display: flex;
   list-style: none;
@@ -61,6 +66,7 @@
 }
 .menu_items-a:hover {
   color: #000;
+text-decoration: none !important;
 }
 
 @media screen and (max-width: 952px) {

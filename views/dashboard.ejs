@@ -17,26 +17,26 @@
 
     <script>
 
-      const prueba = {
-        'vehiculo1': {
-          vehiculo: 'Camioneta 1',
-          estatus: 'En pintura',
-          fecha_ingreso: '01/11/2023',
-          pase_admision: '123456'
-        },
-        'vehiculo2': {
-          vehiculo: 'Camioneta 2',
-          estatus: 'En pintura',
-          fecha_ingreso: '01/11/2023',
-          pase_admision: '123456'
-        },
-        'vehiculo3': {
-          vehiculo: 'Camioneta 3',
-          estatus: 'En pintura',
-          fecha_ingreso: '01/11/2023',
-          pase_admision: '123456'
+      function obtenerFolio() {
+        const folioGuardado = localStorage.getItem('folioGuardado');
+        if (folioGuardado) {
+          return folioGuardado;
+        } else {
+          return null; // O puedes devolver un valor por defecto en caso de que no haya ningún folio guardado
         }
-      };
+      }
+
+      $(document).ready(function () {
+        // const folio = obtenerFolio();
+        const folio = 1111;
+        // Realiza una solicitud GET al servidor para obtener los datos de la base de datos
+        $.get(`/api/vehicles/info/${folio}/folio`, function (data) {
+          // Maneja la respuesta entregada por el servidor
+          //generarElementosHTML(data); // Genera los elementos HTML con los datos recibidos
+          console.log(data);
+        });
+
+      });
 
       // Función para generar elementos HTML basados en los datos de 'prueba'
       function generarElementosHTML(datos) {
@@ -57,10 +57,6 @@
           }
         }
       }
-
-      // Llama a la función para generar los elementos HTML
-      generarElementosHTML(prueba);
-
 
       // Manejador del evento de click en el boton
       $(document).ready(function () {

@@ -1,20 +1,55 @@
 <%- layout('layouts/main.ejs') %>
 
-<body>
+  <head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+    
+    <style>
+      body {
+        color: aliceblue;
+      }
+    </style>
     <h1>Admin Dashboard</h1>
-   
+
+    <div class="table-responsive">
+      <table id="tabla-body" class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Folio interno</th>
+            <th scope="col">Número Pase Adminsión</th>
+            <th scope="col">Número Siniestro</th>
+            <th scope="col">Tipo Vehiculo</th>
+            <th scope="col">Fecha Ingreso</th>
+            <th scope="col">Fecha Egreso</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">ID</th>
+            <th scope="col">cta_id</th>
+            <th scope="col">cte_id</th>
+            <th scope="col">cta_folio</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <button onclick="edit()">Editar</button>
+    <button onclick="create()">Crear</button>
+
     <!-- Boton de logout -->
     <button id="logoutButton">Logout</button>
 
     <!-- Importacion del JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
+
     <script>
       // Manejador del evento de click en el boton
-      $(document).ready(function() {
-        $('#logoutButton').click(function() {
+      $(document).ready(function () {
+        $('#logoutButton').click(function () {
           // Envia una peticion GET al servidor para finalizar la sesion
-          $.get('/auth/logout', function(data) {
+          $.get('/auth/logout', function (data) {
             // Maneja la respuesta entregada por el servidor
             console.log(data); // Despliega los mensajes del servidor.
             // Se redirecciona al usuario a la ruta / de la pagina
@@ -22,5 +57,45 @@
           });
         });
       });
+
+      $(document).ready(function () {
+        // Realizar una solicitud GET al servidor para obtener los datos de la base de datos
+        $.get('/api/vehicles/info', function (response) {
+
+          console.log(response);
+          const tablaBody = $('#tabla-body');
+
+          response.forEach(registro => {
+            const fila = `<tr class="table-light">
+                      <td>${registro.veh_id}</td>
+                      <td>${registro.veh_folioInterno}</td>
+                      <td>${registro.veh_numPaseAdmision}</td>
+                      <td>${registro.veh_numeroSiniestro}</td>
+                      <td>${registro.veh_tipoVehiculo}</td>
+                      <td>${registro.veh_fechaIngreso}</td>
+                      <td>${registro.veh_fechaEgreso}</td>
+                      <td>${registro.veh_folioInterno}</td>
+                      <td>${registro.veh_estatusReparacion}</td>
+                      <td>${registro.cta_id}</td>
+                      <td>${registro.cte_id}</td>
+                      <td>${registro.cta_folio}</td>
+                      <td><button class='btn btn-danger tabla__registros_boton'>Eliminar</button></td>
+                    </tr>`;
+            tablaBody.append(fila);
+          });
+
+
+
+        });
+
+      });
+
+      function edit() {
+        window.location.href = 'auth/editVehicle';
+      }
+
+      function create() {
+        window.location.href = 'auth/createVehicle';
+      }
     </script>
   </body>
