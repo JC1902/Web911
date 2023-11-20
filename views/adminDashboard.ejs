@@ -24,9 +24,6 @@
             <th scope="col">Fecha Ingreso</th>
             <th scope="col">Fecha Egreso</th>
             <th scope="col">Estatus</th>
-            <th scope="col">cta_id</th>
-            <th scope="col">cte_id</th>
-            <th scope="col">cta_folio</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -63,7 +60,7 @@
         // Realizar una solicitud GET al servidor para obtener los datos de la base de datos
         $.get('/api/vehicles/info', function (response) {
 
-          console.log(response);
+          // console.log(response);
           const tablaBody = $('#tabla-body');
 
           response.forEach(registro => {
@@ -76,9 +73,6 @@
                       <td>${registro.veh_fechaIngreso.toString().substring(0, 10)}</td>
                       <td>${registro.veh_fechaEgreso === null ? '' : registro.veh_fechaEgreso}</td>
                       <td>${registro.veh_estatusReparacion}</td>
-                      <td>${registro.cta_id}</td>
-                      <td>${registro.cte_id}</td>
-                      <td>${registro.cta_folio}</td>
                       <td>
                         <button class='btn btn-info btn-accion' onclick="edit(${registro.veh_folioInterno})">Editar</button>
                         <button class='btn btn-danger btn-accion'>Eliminar</button>
