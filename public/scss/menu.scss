@@ -44,6 +44,11 @@ $fuente-principal: 'Monserrat', sans-serif;
     text-decoration: none;
 }
 
+.logo_a:hover {
+    text-decoration: none !important;
+    color: #fff !important;
+  }
+
 .menu_items {
     display: flex;
     list-style: none;
@@ -71,6 +76,7 @@ $fuente-principal: 'Monserrat', sans-serif;
 
     &:hover {
         color: $negro;
+        text-decoration: none !important;
     }
 }
 

@@ -62,8 +62,31 @@ async function isAdmin(req, res) {
     }
 }
 
+async function adminAccess (req, res, next) {
+
+    const { cta_tipoCuenta } = req.user[0];
+
+    if ( cta_tipoCuenta !== "administrador" )
+        return res.status(404).json({ mensaje: "Página no encontrada" });
+   
+    next();
+
+}
+
+async function clientAccess (req, res, next) {
+
+    const { cta_tipoCuenta } = req.user[0];
+
+    if ( cta_tipoCuenta !== "cliente" )
+        return res.status(404).json({ mensaje: "Página no encontrada" });
+   
+    next();
+}
+
 module.exports = { 
 	getCuentaPorFolio,
 	comparePassword,
-	isAdmin
+	isAdmin,
+    adminAccess,
+    clientAccess
 };
