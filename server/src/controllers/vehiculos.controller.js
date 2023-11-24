@@ -70,7 +70,7 @@ async function getVehiculoPorFolioInterno(req, res) {
 
         connection = await pool.getConnection();
 
-        const getVehiculoQuery = 'SELECT veh_id, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_folio FROM Vehiculos WHERE veh_folioInterno = ?';
+        const getVehiculoQuery = 'SELECT veh_id, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion, cta_id, cte_id, cta_folio FROM Vehiculos WHERE veh_folioInterno = ?';
 
         const [vehiculo] = await connection.query(getVehiculoQuery, [folio]);
 
@@ -204,6 +204,34 @@ async function deleteVehiculoPorID(req, res) {
     }
 }
 
+async function getVehiculosCliente(req, res) {
+
+    const id = req.user[0].cta_id
+
+    let connection;
+
+    try {
+        connection = await pool.getConnection();
+        const getVehiculosQuery = "SELECT cte_nombres, cte_apPaterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion FROM Vehiculos LEFT JOIN Cuentas ON Vehiculos.cta_id = Cuentas.cta_id LEFT JOIN Clientes ON Cuentas.cta_id = Clientes.cta_id WHERE Vehiculos.cta_id = ?;";
+
+        const [vehiculos] = await connection.query(getVehiculosQuery, [id]);
+
+        res.status(200).json(vehiculos);
+
+    } catch(error) {
+
+        console.error("Error: ", error.message);
+
+        res.status(500).json({
+            mensaje: "Error al devolver los vehiculos",
+            error: `Error: ${error.message}`
+        });
+
+    } finally {
+        if(connection) connection.release();
+    }
+}
+
 // ---- MÉTODOS AUXILIARES -----
 
 async function getEstatusReparacion(id) {
@@ -232,5 +260,6 @@ module.exports = {
     getVehiculoPorFolioInterno,
     postVehiculo,
     updateVehiculoPorID,
-    deleteVehiculoPorID
+    deleteVehiculoPorID,
+    getVehiculosCliente
 }
