@@ -9,32 +9,32 @@
       <h2 class="titulo">Actualización del vehículo</h2>
       <div>
         <div class="rows">
-          <label for="" class="labels">Folio interno:</label>
-          <input class="inputs" />
+          <label for="" class="labels">Folio interno: *</label>
+          <input class="inputs" id="folioInterno" />
         </div>
         <div class="rows">
-          <label for="" class="labels">Vehiculo:</label>
-          <input class="inputs" />
+          <label for="" class="labels">Número de pase de admisión: *</label>
+          <input class="inputs" id="numeroPaseAdmision" />
         </div>
         <div class="rows">
-          <label for="" class="labels">Número de pase de admisión:</label>
-          <input class="inputs" />
+          <label for="" class="labels">Número siniestro: *</label>
+          <input class="inputs" id="numeroSiniestro" />
         </div>
         <div class="rows">
-          <label for="" class="labels">Número siniestro:</label>
-          <input class="inputs" />
+          <label for="" class="labels">Vehiculo: *</label>
+          <input class="inputs" id="tipo" />
         </div>
         <div class="rows">
-          <label for="" class="labels">Fecha de ingreso:</label>
-          <input class="inputs" type="date" />
+          <label for="" class="labels">Fecha de ingreso: *</label>
+          <input class="inputs" type="date" id="fechaIngreso" />
         </div>
         <div class="rows">
           <label for="" class="labels">Fecha de egreso:</label>
-          <input class="inputs" type="date" />
+          <input class="inputs" type="date" id="fechaEgreso" />
         </div>
         <div class="rows">
-          <label for="" class="labels">Estatus:</label>
-          <input class="inputs" />
+          <label for="" class="labels">Estatus: *</label>
+          <input class="inputs" id="estatus" />
         </div>
         <button onclick="guardar()" class="boton-agregar">Guardar cambios</button>
       </div>
@@ -47,6 +47,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+
+      var id, cuenta_id, cuenta_folio, cliente_id;
+
       // Manejador del evento de click en el boton
       $(document).ready(function () {
         $('#logoutButton').click(function () {
@@ -60,6 +63,8 @@
         });
       });
 
+
+
       $(document).ready(function () {
 
         const folio = localStorage.getItem('vehicle_folio');
@@ -67,37 +72,58 @@
         $.get(`/api/vehicles/info/${folio}/folio`, function (data) {
 
           // console.log(data);
+
           // Asigna los datos a los inputs
           $('.editar-vehiculo__formulario .rows:nth-child(1) input').val(folio);
-          $('.editar-vehiculo__formulario .rows:nth-child(2) input').val(data.veh_tipoVehiculo);
+          $('.editar-vehiculo__formulario .rows:nth-child(2) input').val(data.veh_numPaseAdmision);
           $('.editar-vehiculo__formulario .rows:nth-child(3) input').val(data.veh_numeroSiniestro);
-          $('.editar-vehiculo__formulario .rows:nth-child(4) input').val(data.veh_numeroSiniestro);
+          $('.editar-vehiculo__formulario .rows:nth-child(4) input').val(data.veh_tipoVehiculo);
           $('.editar-vehiculo__formulario .rows:nth-child(5) input').val(ajustarFecha(data.veh_fechaIngreso));
-          $('.editar-vehiculo__formulario .rows:nth-child(6) input').val(data.veh_fechaEgreso === null ? '' : data.veh_fechaEgreso);
+          $('.editar-vehiculo__formulario .rows:nth-child(6) input').val(data.veh_fechaEgreso === null ? '' : ajustarFecha(data.veh_fechaEgreso));
           $('.editar-vehiculo__formulario .rows:nth-child(7) input').val(data.veh_estatusReparacion);
-          // $('.editar-vehiculo__formulario .rows:nth-child(2) input').val(data.numPaseAdmision);
-          // Asigna otros datos a los demás inputs de manera similar
 
-          // Almacena los datos en variables para enviar al guardar
-          const nuevoFolioInterno = data.folioInterno; // Ejemplo
-          const nuevoNumPaseAdmision = data.numPaseAdmision; // Ejemplo
+          id = data.veh_id;
+          cuenta_id = data.cta_id;
+          cuenta_folio = data.cta_folio;
+          cliente_id = data.cte_id;
+
         });
       });
 
-
       function guardar() {
 
+        values = {
+          veh_folioInterno: document.getElementById('folioInterno').value,
+          veh_numPaseAdmision: document.getElementById('numeroPaseAdmision').value,
+          veh_numeroSiniestro: document.getElementById('numeroSiniestro').value,
+          veh_tipoVehiculo: document.getElementById('tipo').value,
+          veh_fechaIngreso: document.getElementById('fechaIngreso').value,
+          veh_fechaEgreso: document.getElementById('fechaEgreso').value,
+          veh_estatusReparacion: document.getElementById('estatus').value,
+          cta_id: cuenta_id,
+          cte_id: cliente_id,
+          cta_folio: cuenta_folio,
+        }
+
+        // $.put(`/api/vehicles/info/${id}/ID`, values).then(console.log("Exito"));
+        $.ajax({
+          url: `/api/vehicles/info/${id}/ID`,
+          type: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify(values),
+          success: function (response) {
+            alert("Actualizado éxitosamente");
+            window.location.href = '/auth'
+          },
+          error: function (error) {
+            alert("Error al actualizar los datos");
+          }
+        });
       }
 
       function ajustarFecha(fecha) {
-
         return fecha.split('T')[0];
-
-        // var newFecha = fecha.toString().substring(5, 7);
-        // newFecha += '-' + fecha.toString().substring(8, 10);
-        // newFecha += '-' + fecha.toString().substring(0, 4);
-
-        // return newFecha;
       }
+      
     </script>
   </body>

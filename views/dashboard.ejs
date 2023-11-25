@@ -2,7 +2,7 @@
 
   <body>
     <div class="dashboard-cliente">
-      <h1 class="dashboard-cliente__titulo">Servicios de :</h1>
+      <h1 class="dashboard-cliente__titulo" id="nombre">Servicios de :</h1>
 
       <div id="dashboard-cliente__vehiculos">
 
@@ -17,45 +17,12 @@
 
     <script>
 
-      function obtenerFolio() {
-        const folioGuardado = localStorage.getItem('folioGuardado');
-        if (folioGuardado) {
-          return folioGuardado;
-        } else {
-          return null; // O puedes devolver un valor por defecto en caso de que no haya ningún folio guardado
-        }
-      }
-
-      $(document).ready(function () {
-        // const folio = obtenerFolio();
-        const folio = 1111;
-        // Realiza una solicitud GET al servidor para obtener los datos de la base de datos
-        $.get(`/api/vehicles/info/${folio}/folio`, function (data) {
-          // Maneja la respuesta entregada por el servidor
-          //generarElementosHTML(data); // Genera los elementos HTML con los datos recibidos
-          console.log(data);
-        });
-
-      });
-
       // Función para generar elementos HTML basados en los datos de 'prueba'
       function generarElementosHTML(datos) {
-        const contenedor = $('#dashboard-cliente__vehiculos');
-        for (const vehiculo in datos) {
-          if (datos.hasOwnProperty(vehiculo)) {
-            const info = datos[vehiculo];
-            const elementoHTML = `
-          <div class="dashboard-cliente__tarjeta-vehiculo">
-            <h2 class='titulo'>Datos del vehículo</h2>
-            <p class='atributos'><strong>Vehículo:</strong> ${info.vehiculo}</p>
-            <p class='atributos'><strong>Estatus:</strong> ${info.estatus}</p>
-            <p class='atributos'><strong>Fecha de Ingreso:</strong> ${info.fecha_ingreso}</p>
-            <p class='atributos'><strong>Pase de Admisión:</strong> ${info.pase_admision}</p>
-          </div>
-        `;
-            contenedor.append(elementoHTML);
-          }
-        }
+
+
+        console.log(JSON.stringify(datos))
+
       }
 
       // Manejador del evento de click en el boton
@@ -70,5 +37,39 @@
           });
         });
       });
+
+      $(document).ready(function () {
+
+        // Realiza la petición get para obtener os vehículos de un cliente
+        $.get('api/vehicles/myvehicles', function (response) {
+
+          const nombre = response[0].cte_nombres;
+          const apellido = response[0].cte_apPaterno;
+          const saludo = document.getElementById('nombre');
+          saludo.textContent = "Servicios de " + nombre + " " + apellido + ":";
+
+          const contenedor = $('#dashboard-cliente__vehiculos');
+
+          response.forEach((vehiculo) => {
+
+            const elementoHTML = `
+                                <div class="dashboard-cliente__tarjeta-vehiculo">
+                                  <h2 class='titulo'>Datos del vehículo</h2>
+                                  <p class='atributos'><strong>Vehículo:</strong> ${vehiculo.veh_tipoVehiculo}</p>
+                                  <p class='atributos'><strong>Pase de Admisión:</strong> ${vehiculo.veh_numPaseAdmision}</p>
+                                  <p class='atributos'><strong>Pase Siniestro:</strong> ${vehiculo.veh_numeroSiniestro}</p>
+                                  <p class='atributos'><strong>Estatus:</strong> ${vehiculo.veh_estatusReparacion}</p>
+                                  <p class='atributos'><strong>Fecha de Ingreso:</strong> ${ajustarFecha(vehiculo.veh_fechaIngreso)}</p>
+                                  <p class='atributos'><strong>Fecha de Egreso:</strong> ${vehiculo.veh_fechaEgreso == null ? '' : ajustarFecha(vehiculo.veh_fechaIngreso)}</p>
+                                </div>
+                              `;
+            contenedor.append(elementoHTML);
+          });
+        })
+      })
+
+      function ajustarFecha(fecha) {
+        return fecha.split('T')[0];
+      }
     </script>
   </body>
