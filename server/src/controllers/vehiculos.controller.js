@@ -214,7 +214,7 @@ async function getVehiculosCliente(req, res) {
         connection = await pool.getConnection();
         const getVehiculosQuery = "SELECT cte_nombres, cte_apPaterno, veh_numPaseAdmision, veh_numeroSiniestro, veh_tipoVehiculo, veh_fechaIngreso, veh_fechaEgreso, veh_estatusReparacion FROM Vehiculos LEFT JOIN Cuentas ON Vehiculos.cta_id = Cuentas.cta_id LEFT JOIN Clientes ON Cuentas.cta_id = Clientes.cta_id WHERE Vehiculos.cta_id = ?;";
 
-        const [vehiculos] = await connection.query(getVehiculosQuery, [id]);
+        const vehiculos = await connection.query(getVehiculosQuery, [id]);
 
         res.status(200).json(vehiculos);
 
