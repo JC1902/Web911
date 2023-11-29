@@ -259,6 +259,35 @@ $banner: #ebf707;
     }
 }
 
+@media screen and (max-width: 768px) {
+    .img-inicio {
+        display:flex;
+        flex-direction: column;
+        margin: auto auto;
+        max-width: 90%;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        width: 90%;
+    }
+
+    .imagen_inicio {
+        width: 90%;
+        height: 90%;
+        border-radius: 4rem;
+        margin-top: 3rem; /* Centra la imagen horizontalmente */
+    }
+
+    .servicios-boton {
+        padding: 1.5rem 2rem;
+        background: linear-gradient(135deg, #f3ad0b 50%, #fccd02);
+        color: $negro;
+        max-width: 100%;
+        margin-bottom: 5rem;
+        margin-left: 0;
+    }
+}
+
 /*=================================================================INDEX========================================================================*/
 
 /*============================================================SIGNIN Y SIGNUP===================================================================*/
@@ -424,13 +453,14 @@ $banner: #ebf707;
 }
 
 .footer__contacto {
-    position: absolute;
+    position: fixed;
     width: 100%;
     font-family: $fuentePrincipal;
     color: $blanco;
     font-size: 1rem;
     text-align: center;
     bottom: 0;
+    background: linear-gradient(235deg, black 30%, rgb(85, 4, 4));
 }
 
 
