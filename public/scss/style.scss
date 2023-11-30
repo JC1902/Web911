@@ -1,6 +1,7 @@
 $rojo911 : #d12926;
 $amarillo911 : #fef709;
 $blanco : #ffffff;
+$blancoTrans: rgba(255,255,255,.2);
 $fuentePrincipal : 'Montserrat',
 sans-serif;
 $negro : #000000;
@@ -258,6 +259,35 @@ $banner: #ebf707;
     }
 }
 
+@media screen and (max-width: 768px) {
+    .img-inicio {
+        display:flex;
+        flex-direction: column;
+        margin: auto auto;
+        max-width: 90%;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        width: 90%;
+    }
+
+    .imagen_inicio {
+        width: 90%;
+        height: 90%;
+        border-radius: 4rem;
+        margin-top: 3rem; /* Centra la imagen horizontalmente */
+    }
+
+    .servicios-boton {
+        padding: 1.5rem 2rem;
+        background: linear-gradient(135deg, #f3ad0b 50%, #fccd02);
+        color: $negro;
+        max-width: 100%;
+        margin-bottom: 5rem;
+        margin-left: 0;
+    }
+}
+
 /*=================================================================INDEX========================================================================*/
 
 /*============================================================SIGNIN Y SIGNUP===================================================================*/
@@ -423,13 +453,14 @@ $banner: #ebf707;
 }
 
 .footer__contacto {
-    position: absolute;
+    position: fixed;
     width: 100%;
     font-family: $fuentePrincipal;
     color: $blanco;
     font-size: 1rem;
     text-align: center;
     bottom: 0;
+    background: linear-gradient(235deg, black 30%, rgb(85, 4, 4));
 }
 
 
@@ -859,4 +890,126 @@ $banner: #ebf707;
         margin: 0;
         max-width: 100%;
     }
+}
+
+/*=======================================================Dashboard Crear Vehiculo============================================*/
+.dashboard-crear__contenedor{
+    margin: 2.5rem;
+    background-color: $blancoTrans;
+    border-radius: 3rem;
+    border: .1rem solid $blanco;
+    padding: 2.5rem;
+    color: $blanco;
+    font-family: $fuentePrincipal;
+    text-align: center;
+}
+
+
+.dashboard-crear__titulo{
+    text-align: start;
+}
+
+.dashboard-crear__formulario{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-crear__formulario > :nth-child(n+3) {
+    margin-top: 2rem;
+  }
+
+  .dashboard-crear__formulario.cliente > :nth-child(n+3) {
+    margin-top: 1.5rem;
+  }
+
+  .dashboard-crear__formulario.cliente{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: start;
+}
+
+.dashboard-crear__texto{
+    font-size: 1.8rem;
+    margin-right: 1.75rem;
+    margin-bottom: 0;
+    text-align: end;
+    font-weight: 400;
+}
+
+.dashboard-crear__texto.cliente{
+    text-align: start;
+}
+
+.dashboard-crear__input{
+    border-radius: .5rem;
+    border-style: none;
+    width: 35rem;
+    height: 2.5rem;
+    padding: .3rem;
+    height: 2.5rem;
+    font-size: 1.4rem;
+}
+
+.boton-crear {
+    border: none;
+    border-radius: 3rem;
+    background: linear-gradient(135deg, $amarillo911 41%, rgba(247,206,7,1) 62%);
+    height: 100%;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0 auto;
+}
+
+.boton-crear:hover {
+    transform: scale(1.02);
+}
+
+
+@media screen and (max-width: 800px) {
+
+    .dashboard-crear__contenedor{
+        margin: 2.5rem;
+        background-color: $blancoTrans;
+        border-radius: 3rem;
+        border: .1rem solid $blanco;
+        padding: 2.5rem;
+        color: $blanco;
+        font-family: $fuentePrincipal;
+        text-align: center;
+    }
+
+    .dashboard-crear__responsivo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: start;
+    }
+    
+    
+    .dashboard-crear__titulo{
+        text-align: start;
+    }
+    
+    .dashboard-crear__formulario{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    
+      .dashboard-crear__formulario.cliente{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        margin-bottom: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .dashboard-crear__input{
+        width: 20rem;
+    }
+    
 }

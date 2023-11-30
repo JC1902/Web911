@@ -1,4 +1,6 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -80,6 +82,11 @@
 @media screen and (max-width: 800px) {
   .texto-agencias-horario {
     font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .texto-agencias-horario {
+    font-size: 1.75rem;
   }
 }
 .imgUbicacionTorreon {
@@ -168,47 +175,50 @@
 
 @media screen and (max-width: 1044px) {
   .img-inicio {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto; /* Tres filas */
+    margin: auto auto;
+    max-width: 90%;
+    justify-items: center;
     align-items: center;
-    justify-content: center;
-    position: relative;
-    height: 100vh;
+    width: 90%;
+  }
+  .texto-taller,
+  .texto-auto911:nth-of-type(1),
+  .texto-auto911:nth-of-type(2),
+  .texto-lema,
+  .imagen_inicio,
+  .servicios-boton {
+    text-align: center; /* Alinear el texto al centro */
   }
   .texto-auto911 {
     font-family: "Montserrat", sans-serif;
-    position: absolute;
     font-size: 75px;
     font-weight: bold;
     color: #ffffff;
-    z-index: 1;
   }
   .texto-taller {
     font-family: "Montserrat", sans-serif;
-    position: absolute;
     font-size: 25px;
     font-weight: 300;
     color: #ffffff;
-    z-index: 1;
   }
   .texto-lema {
     font-family: "Montserrat", sans-serif;
-    position: absolute;
     top: 0;
     left: 0;
     font-size: 25px;
     font-weight: 300;
     color: #ffffff;
-    z-index: 1;
   }
   .imagen_inicio {
-    width: auto;
-    height: auto;
-    position: absolute;
+    width: 90%;
+    height: 90%;
     border-radius: 4rem;
+    margin: auto auto; /* Centra la imagen horizontalmente */
   }
   .servicios-boton {
-    position: absolute;
     padding: 1.5rem 2rem;
     border-radius: 50px;
     font-weight: 700;
@@ -219,9 +229,7 @@
     max-width: 100%;
     text-align: center;
     text-decoration: none;
-    z-index: 1;
-    bottom: 5vh;
-    left: 35rem;
+    margin-bottom: 20px;
   }
 }
 /*=================================================================INDEX========================================================================*/
@@ -366,7 +374,8 @@
 }
 
 .redes-sociales__contacto img {
-  margin-right: 1rem; /* Espacio entre la imagen y el texto */
+  margin-right: 1rem;
+  /* Espacio entre la imagen y el texto */
   width: 2rem;
 }
 
@@ -422,6 +431,32 @@
   }
 }
 /*============================================================SERVICIOS===================================================================*/
+.c-item {
+  height: 50rem;
+}
+
+.c-img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.formato-carrusel {
+  background-color: #ffffff;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  border-radius: 3rem;
+}
+
+.imagen-servicios {
+  border-radius: 3rem;
+}
+
+.color-banner {
+  color: #ebf707;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
 .encabezado__servicios {
   color: #ffffff;
   text-align: center;
@@ -553,7 +588,7 @@
 .texto__todos--servicios {
   color: #ffffff;
   font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin: auto 0;
 }
 
@@ -569,8 +604,193 @@
     font-size: 2rem;
   }
 }
+/*============================================================DASHBOARD CLIENTE===================================================================*/
 .dashboard-cliente {
   color: white;
+  margin: auto;
+}
+
+.dashboard-cliente__titulo {
+  margin: 25px 0 0 25px;
+  font-size: 28px;
+}
+
+.dashboard-cliente__tarjeta-vehiculo {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 25px;
+  border-radius: 30px;
+  border: 1px solid #FFF;
+  min-height: 200px;
+  padding: 15px;
+  margin-bottom: 40px;
+}
+
+.dashboard-cliente__tarjeta-vehiculo .titulo {
+  font-size: 26px;
+  text-align: center;
+  margin: 20px;
+}
+
+.dashboard-cliente__tarjeta-vehiculo .atributos {
+  font-size: 18px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.dashboard-cliente__boton {
+  display: block;
+  margin: 30px auto;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+  font-size: 22px;
+  border-radius: 10px;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/*============================================================DASHBOARD ADMIN===================================================================*/
+.dashboard-admin {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.dashboard-admin__titulo {
+  font-size: 28px;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+}
+
+.boton-agregar {
+  margin: 10px 0;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #fef709 41%, rgb(247, 206, 7) 62%);
+  height: 100%;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.boton-agregar:hover {
+  transform: scale(1.02);
+}
+
+.admin-tabla {
+  max-width: 100%;
+  padding: 0 20px;
+  font-size: 12px;
+}
+
+.btn-accion {
+  width: 60px !important;
+  margin-bottom: 5px !important;
+}
+
+.btn-logout {
+  display: flex;
+  margin: 0 auto;
+  background-color: #fff;
+  border: none;
+  border-radius: 30px;
+  width: 150px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.btn-logout:hover {
+  background-color: #d12926;
+  color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-admin {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/*============================================================EDITAR VEHICULO===================================================================*/
+.editar-vehiculo {
+  font-family: "Montserrat", sans-serif;
+  margin: 20px;
+}
+
+.editar-vehiculo__formulario {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 25px;
+  border-radius: 30px;
+  border: 1px solid #FFF;
+  padding: 15px;
+  color: #FFF;
+  font-family: "Montserrat", sans-serif;
+  height: 100%;
+}
+
+.editar-vehiculo__formulario .titulo {
+  margin: 15px 0 40px 20px;
+  font-size: 24px;
+}
+
+.editar-vehiculo__formulario .rows {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 20px auto;
+}
+
+.editar-vehiculo__formulario .labels {
+  font-size: 18px;
+  font-weight: 400;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.editar-vehiculo__formulario .inputs {
+  width: 250px;
+  max-width: 250px;
+  height: 25px;
+  max-height: 25px;
+  margin-left: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  padding-left: 5px;
+}
+
+.editar-vehiculo__formulario .boton-agregar {
+  display: flex;
+  margin: 40px auto 20px auto;
+}
+
+@media screen and (max-width: 768px) {
+  .editar-vehiculo__formulario .rows {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .editar-vehiculo__formulario .labels {
+    margin: 0;
+    text-align: left;
+  }
+  .editar-vehiculo__formulario .inputs {
+    margin: 0;
+    max-width: 100%;
+  }
+}
+/*=======================================================Dashboard Crear Vehiculo============================================*/
+.dashboard-crear__contenedor {
+  width: 80rem;
+  background-color: #ffffff;
+  opacity: 0.3;
 }
 
 /*# sourceMappingURL=stylesheet.css.map */

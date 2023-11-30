@@ -1,26 +1,237 @@
 <%- layout('layouts/main.ejs') %>
 
-<body>
-    <h1>Admin Dashboard</h1>
-   
-    <!-- Boton de logout -->
-    <button id="logoutButton">Logout</button>
+  <body>
+    <div class="dashboard-admin">
+      <h1 class="dashboard-admin__titulo">Dashboard Administrativo</h1>
+    </div>
 
-    <!-- Importacion del JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  
-    <script>
-      // Manejador del evento de click en el boton
-      $(document).ready(function() {
-        $('#logoutButton').click(function() {
-          // Envia una peticion GET al servidor para finalizar la sesion
-          $.get('/auth/logout', function(data) {
-            // Maneja la respuesta entregada por el servidor
-            console.log(data); // Despliega los mensajes del servidor.
-            // Se redirecciona al usuario a la ruta / de la pagina
-            window.location.href = '/';
+    <div class="dashboard-crear__contenedor">
+      <h2 class="dashboard-crear__titulo">Ingreso de vehículo</h2>
+
+      <div class="dashboard-crear__formulario">
+        <p class="dashboard-crear__texto">Folio Interno: </p>
+        <input type="text" class="dashboard-crear__input" id="folioInterno">
+
+        <p class="dashboard-crear__texto">Tipo de vehiculo: </p>
+        <input type="text" class="dashboard-crear__input" id="tipoVehiculo" >
+
+        <p class="dashboard-crear__texto">Numero de pase de admisión: </p>
+        <input type="text" class="dashboard-crear__input" id="numeroPaseAdmision">
+
+        <p class="dashboard-crear__texto">Numero siniestro: </p>
+        <input type="text" class="dashboard-crear__input" id="numeroSiniestro">
+
+        <p class="dashboard-crear__texto">Fecha ingreso:</p>
+        <input type="date" class="dashboard-crear__input" id="fechaIngreso">
+
+        <p class="dashboard-crear__texto">Estatus:</p>
+        <input type="text" class="dashboard-crear__input" id="estatus">
+      </div>
+
+      <h2>Datos del cliente</h2>
+      <div class="dashboard-crear__formulario cliente">
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Nombre: </p>
+          <input type="text" class="dashboard-crear__input" id="nombre">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Apellido paterno: </p>
+          <input type="text" class="dashboard-crear__input" id="apellidoPaterno">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Apellido materno: </p>
+          <input type="text" class="dashboard-crear__input" id="apellidoMaterno">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Sexo: </p>
+          <input type="text" class="dashboard-crear__input" id="sexo" maxlength="1">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Teléfono: </p>
+          <input type="text" class="dashboard-crear__input" id="telefono">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> Correo electrónico: </p>
+          <input type="text" class="dashboard-crear__input" id="correo">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Código postal: </p>
+          <input type="text" class="dashboard-crear__input" id="cp">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Calle: </p>
+          <input type="text" class="dashboard-crear__input" id="calle">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Colonia: </p>
+          <input type="text" class="dashboard-crear__input" id="colonia">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Municipio: </p>
+          <input type="text" class="dashboard-crear__input" id="municipio">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Estado: </p>
+          <input type="text" class="dashboard-crear__input" id="estado">
+        </div>
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *Folio del Cliente: </p>
+          <input type="text" class="dashboard-crear__input" id="ctaFolio">
+        </div>
+
+        <div class="dashboard-crear__responsivo">
+          <p class="dashboard-crear__texto cliente"> *contraseña de cliente: </p>
+          <input type="text" class="dashboard-crear__input" id="ctaContra">
+        </div>
+
+        <button class="boton-crear" onclick="ingresar()">Ingresar datos</button>
+      </div>
+
+
+
+      <!-- Boton de logout -->
+      <button class="btn-logout" id="logoutButton">Cerrar Sesión</button>
+
+      <!-- Importacion del JQuery -->
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+      <script>
+          const cuenta_folio = null;
+        // Manejador del evento de click en el boton
+        $(document).ready(function () {
+          $('#logoutButton').click(function () {
+            // Envia una peticion GET al servidor para finalizar la sesion
+            $.get('/auth/logout', function (data) {
+              // Maneja la respuesta entregada por el servidor
+              console.log(data); // Despliega los mensajes del servidor.
+              // Se redirecciona al usuario a la ruta / de la pagina
+              window.location.href = '/';
+            });
           });
         });
-      });
-    </script>
+
+
+        function ingresar() {
+          const fechaHoraActual = new Date().toISOString().slice(0, 19).replace("T", " ");
+
+          //CREACIÓN DE LA CUENTA DEL CLIENTE
+
+          valuesCta = {
+            cta_folio: document.getElementById('ctaFolio').value,
+            cta_password: document.getElementById('ctaContra').value,
+            cta_tipoCuenta: 'cliente',
+            cta_fechaCreacion: fechaHoraActual,
+          }
+
+          $.ajax({
+            url: `/api/cuentas/info/`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(valuesCta),
+            success: function (response) {
+              alert("Cuenta Creada exitosamente");
+              ingresar2();
+            },
+            error: function (error) {
+              alert("Error al Insertar los datos de la cuenta");
+            }
+          });
+        }
+
+
+          function ingresar2() {
+
+            //BUSCANDO LA ID DE LA CUENTA RECIÉN CREADA
+            const folio = document.getElementById('ctaFolio').value;
+            // Llamada al backend para obtener los datos y llenar los inputs
+            $.get(`/api/cuentas/info/${folio}/folio`, function (data) {
+
+              //console.log(data);
+             const cuenta_id = data.cta_id;
+  
+          //DATOS A INGRESAR DE LA CUENTA DEL CLIENTE RECIÉN CREADO
+          valuesCte = {
+            cte_apPaterno: document.getElementById('apellidoPaterno').value,
+            cte_apMaterno: document.getElementById('apellidoMaterno').value,
+            cte_nombres: document.getElementById('nombre').value,
+            cte_sexo: document.getElementById('sexo').value,
+            cte_correo: document.getElementById('correo').value,
+            cte_codigoPostal: document.getElementById('cp').value,
+            cte_calle: document.getElementById('calle').value,
+            cte_colonia: document.getElementById('colonia').value,
+            cte_municipio: document.getElementById('municipio').value,
+            cte_estado: document.getElementById('estado').value,
+            cte_telefono: document.getElementById('telefono').value,
+            cta_id: cuenta_id,
+            cta_folio: document.getElementById('ctaFolio').value,
+          }
+
+          $.ajax({
+            url: `/api/clients/info`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(valuesCte),
+            success: function (response) {
+              alert("Cuenta Creada exitosamente");
+              ingresar3();
+            },
+            error: function (error) {
+              alert("Error al Insertar los datos del cliente");
+            }
+          });
+        });
+        }
+
+       function ingresar3(){
+         //BUSCANDO LA ID DE LA CUENTA RECIÉN CREADA
+         const folio = document.getElementById('ctaFolio').value;
+            // Llamada al backend para obtener los datos y llenar los inputs
+            $.get(`/api/clients/info/${folio}/folio`, function (data) {
+
+             const cliente_id = data.cte_id;
+             const cuenta_id = data.cta_id;
+
+
+        values = {
+            veh_folioInterno: document.getElementById('folioInterno').value,
+            veh_numPaseAdmision: document.getElementById('numeroPaseAdmision').value,
+            veh_numeroSiniestro: document.getElementById('numeroSiniestro').value,
+            veh_tipoVehiculo: document.getElementById('tipoVehiculo').value,
+            veh_fechaIngreso: document.getElementById('fechaIngreso').value,
+            veh_estatusReparacion: document.getElementById('estatus').value,
+            cta_id: cuenta_id,
+            cta_folio: document.getElementById('ctaFolio').value,
+            cte_id: cliente_id,
+          }
+          
+          $.ajax({
+            url: `/api/vehicles/info`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(values),
+            success: function (response) {
+              alert("Datos insertados exitosamente");
+              window.location.href = '/auth'
+            },
+            error: function (error) {
+              alert("Error al actualizar los datos");
+            }
+          });
+        });
+       }
+
+        function ajustarFecha(fecha) {
+          return fecha.split('T')[0];
+        }
+      </script>
   </body>
