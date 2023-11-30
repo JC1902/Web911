@@ -71,11 +71,11 @@
                       <td>${registro.veh_numeroSiniestro}</td>
                       <td>${registro.veh_tipoVehiculo}</td>
                       <td>${registro.veh_fechaIngreso.toString().substring(0, 10)}</td>
-                      <td>${registro.veh_fechaEgreso === null ? '' : registro.veh_fechaEgreso}</td>
+                      <td>${registro.veh_fechaEgreso === null ? '' : registro.veh_fechaEgreso.toString().substring(0, 10)}</td>
                       <td>${registro.veh_estatusReparacion}</td>
                       <td>
                         <button class='btn btn-info btn-accion' onclick="edit(${registro.veh_folioInterno})">Editar</button>
-                        <button class='btn btn-danger btn-accion'>Eliminar</button>
+                        <button class='btn btn-danger btn-accion' onclick="eliminarRegistro(${registro.veh_id})">Eliminar</button>
                       </td>
                     </tr>`;
             tablaBody.append(fila);
@@ -95,5 +95,21 @@
       function create() {
         window.location.href = 'auth/createVehicle';
       }
+
+
+      function eliminarRegistro(id) {
+        $.ajax({
+          url: `/api/vehicles/info/${id}/ID`,
+          type: 'DELETE',
+          success: function (response) {
+            alert("Registro eliminado con éxito");
+            window.location.reload();
+          },
+          error: function (error) {
+            alert("Error al eliminar el registro");
+          }
+        });
+      }
+
     </script>
   </body>
