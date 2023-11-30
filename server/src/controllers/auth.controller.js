@@ -30,6 +30,9 @@ async function comparePassword(folio, password) {
         const connection = await pool.getConnection();
         const [storedPassword] = await connection.query('SELECT cta_password FROM Cuentas WHERE cta_folio = ?', folio);
 
+        if (storedPassword == undefined)
+            return;
+
         connection.release();
         return new Promise((resolve, reject) => {
             bcrypt.compare(password, storedPassword.cta_password, (err, result) => {
